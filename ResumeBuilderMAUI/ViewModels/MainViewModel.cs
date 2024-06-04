@@ -18,6 +18,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 return instance;
             }
         }
+
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
         private string? firstName;
@@ -32,9 +33,6 @@ namespace ResumeBuilderMAUI.ViewModels
         private string? phoneNumber;
 
         public string Data => $"First Name: {FirstName}\nLast Name: {LastName}\nPhone Number: {phoneNumber}";
-
-
-
 
         [RelayCommand]
         void Save()
