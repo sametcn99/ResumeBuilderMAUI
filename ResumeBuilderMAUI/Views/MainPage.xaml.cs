@@ -1,6 +1,6 @@
 ﻿using ResumeBuilderMAUI.ViewModels;
 
-namespace ResumeBuilderMAUI
+namespace ResumeBuilderMAUI.Views
 {
     public partial class MainPage : ContentPage
     {
@@ -8,7 +8,9 @@ namespace ResumeBuilderMAUI
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainViewModel();
+            MainViewModel viewModel = MainViewModel.Instance;
+
+            BindingContext = viewModel;
         }
     }
 }

@@ -5,22 +5,42 @@ namespace ResumeBuilderMAUI.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
+        private static MainViewModel? instance;
+
+        public static MainViewModel Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MainViewModel();
+                }
+                return instance;
+            }
+        }
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(FullName))]
-        private string firstName = "";
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? firstName;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(FullName))]
-        private string lastName = "";
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? lastName;
 
 
-        public string FullName => $"{FirstName} {LastName}";
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? phoneNumber;
+
+        public string Data => $"First Name: {FirstName}\nLast Name: {LastName}\nPhone Number: {phoneNumber}";
+
+
+
 
         [RelayCommand]
         void Save()
         {
-            Console.WriteLine($"Saving {FullName}");
-            if (FullName.Length > 5)
+            Console.WriteLine($"Saving {Data}");
+            if (Data.Length > 5)
             {
                 if (firstName.Length < 5 || lastName.Length < 5)
                 {
@@ -28,7 +48,8 @@ namespace ResumeBuilderMAUI.ViewModels
                 }
                 else
                 {
-                    Application.Current?.MainPage?.DisplayAlert("Saved", FullName, "OK");
+                    Application.Current?.MainPage?.DisplayAlert("Saved", $"{Data}", "OK");
+
                 }
             }
             else
