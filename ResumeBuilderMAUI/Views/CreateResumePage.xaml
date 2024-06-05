@@ -4,10 +4,10 @@
              x:Class="ResumeBuilderMAUI.Views.CreateResumePage"
              xmlns:viewmodel="clr-namespace:ResumeBuilderMAUI.ViewModels"
              x:DataType="viewmodel:MainViewModel">
-        <ScrollView>
+    <ScrollView>
         <VerticalStackLayout x:Name="Layout"
                              Spacing="20"
-                             Padding="10">
+                             Padding="20">
             <Label Text="Resume Builder"
                    FontSize="Title"
                    FontAttributes="Bold"
@@ -15,6 +15,10 @@
             <Label Text="Create your resume in minutes"
                    FontSize="Body"
                    HorizontalOptions="Center" />
+
+            <Label Text="Personal Information"
+                   FontSize="Title"
+                   FontAttributes="Bold" />
             <HorizontalStackLayout Spacing="10">
                 <Entry Placeholder="First Name"
                        Text="{Binding FirstName}"
@@ -23,28 +27,13 @@
                        Text="{Binding LastName}"
                        WidthRequest="150" />
             </HorizontalStackLayout>
-            <Entry Placeholder="Email"
-                   Text="{Binding Email}" />
-            <Entry Placeholder="Address"
-                   Text="{Binding Address}" />
-            <HorizontalStackLayout Spacing="10">
-                <Entry Placeholder="City"
-                       Text="{Binding City}"
-                       WidthRequest="150" />
-                <Entry Placeholder="State"
-                       Text="{Binding State}"
-                       WidthRequest="150" />
-            </HorizontalStackLayout>
-            <HorizontalStackLayout Spacing="10">
-                <Entry Placeholder="Zip Code"
-                       Text="{Binding ZipCode}"
-                       WidthRequest="150" />
-                <Entry Placeholder="Country"
-                       Text="{Binding Country}"
-                       WidthRequest="150" />
-            </HorizontalStackLayout>
             <Entry Placeholder="Summary"
                    Text="{Binding Summary}" />
+            <Entry Placeholder="Email"
+                   Text="{Binding Email}" />
+            <Editor Placeholder="Address"
+                    MinimumHeightRequest="100"
+                    Text="{Binding Address}" />
             <Entry Placeholder="Certifications"
                    Text="{Binding Certifications}" />
             <Entry Placeholder="Languages"
@@ -55,6 +44,38 @@
                    Text="{Binding GitHub}" />
             <Entry Placeholder="Phone Number"
                    Text="{Binding PhoneNumber}" />
+
+            <Label Text="Experience"
+                   FontSize="Title"
+                   FontAttributes="Bold" />
+            <HorizontalStackLayout Spacing="10">
+                <Entry Placeholder="Experience Title"
+                       WidthRequest="250"
+                       Text="{Binding ExperienceTitle}" />
+                <Entry Placeholder="Experience Company"
+                       WidthRequest="250"
+                       Text="{Binding ExperienceCompany}" />
+                <Entry Placeholder="Experience Position"
+                       WidthRequest="250"
+                       Text="{Binding ExperiencePosition}" />
+            </HorizontalStackLayout>
+            <Editor MinimumHeightRequest="150"
+                    Placeholder="Experience Detail"
+                    Text="{Binding ExperienceDetail}" />
+            <HorizontalStackLayout Spacing="10">
+                <Entry Placeholder="Start Date"
+                       WidthRequest="250"
+                       Text="{Binding ExperienceStartDate}" />
+                <Entry Placeholder="End Date"
+                       WidthRequest="250"
+                       Text="{Binding ExperienceEndDate}" />
+            </HorizontalStackLayout>
+            <Button Text="Add Experience"
+                    Command="{Binding AddExperienceCommand}" />
+
+            <Label Text="Skills"
+                   FontSize="Title"
+                   FontAttributes="Bold" />
             <HorizontalStackLayout Spacing="10">
                 <CollectionView ItemsSource="{Binding SkillList}">
                     <CollectionView.ItemTemplate>

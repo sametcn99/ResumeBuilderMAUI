@@ -7,26 +7,17 @@
     <ScrollView>
         <VerticalStackLayout Padding="30,0"
                              Spacing="25">
-            <Label Text="Resume Builder"
+            <Label Text="Hello!"
                    FontSize="Title"
                    FontAttributes="Bold"
                    HorizontalOptions="Center" />
-            <Label Text="Create your resume in minutes"
-                   FontSize="Body"
-                   HorizontalOptions="Center" />
-            <Entry Placeholder="First Name"
-                   Text="{Binding FirstName}" />
-            <Entry Placeholder="Last Name"
-                   Text="{Binding LastName}" />
-            <Entry Placeholder="Phone Number"
-                   Text="{Binding PhoneNumber}" />
-            <Entry x:Name="Skills"
-                   Placeholder="Skills"
-                   Text="{Binding Skill}" />
-            <Button Text="Add Skill"
-                    Command="{Binding AddSkillCommand}" />
-            <Button Text="Save"
-                    Command="{Binding SaveCommand}" />
+            <Button Text="Create New Resume"
+                    FontSize="Medium"
+                    Clicked="OnCreateResumeClicked"
+                    HorizontalOptions="Center" />
+            <Button Text="View Source Code"
+                    Clicked="OnViewSourceCodeClicked"
+                    HorizontalOptions="Center" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
