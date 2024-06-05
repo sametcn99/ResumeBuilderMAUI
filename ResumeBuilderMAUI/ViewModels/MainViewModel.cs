@@ -94,23 +94,7 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void Save()
         {
-            Console.WriteLine($"Saving {Data}");
-            if (Data.Length > 5)
-            {
-                if (FirstName.Length < 5 || LastName.Length < 5)
-                {
-                    Application.Current?.MainPage?.DisplayAlert(FirstName.Length < 5 ? "First Name" : "Last Name", "Name should be more than 5 characters", "OK");
-                }
-                else
-                {
-                    Application.Current?.MainPage?.DisplayAlert("Saved", $"{Data}", "OK");
-
-                }
-            }
-            else
-            {
-                Application.Current?.MainPage?.DisplayAlert("Full Name", "Full Name should be more than 5 characters", "OK");
-            }
+            Application.Current?.MainPage?.DisplayAlert("Saved", $"{Data}", "OK");
         }
     }
 }
