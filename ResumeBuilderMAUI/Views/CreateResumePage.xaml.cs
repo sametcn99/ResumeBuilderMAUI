@@ -2,9 +2,9 @@ using ResumeBuilderMAUI.ViewModels;
 
 namespace ResumeBuilderMAUI.Views;
 
-public partial class DashBoard : ContentPage
+public partial class CreateResumePage : ContentPage
 {
-    public DashBoard(MainViewModel vm)
+    public CreateResumePage(MainViewModel vm)
     {
         BindingContext = vm;
         InitializeComponent();

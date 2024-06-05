@@ -10,8 +10,8 @@
         <ShellContent Title="Home"
                       ContentTemplate="{DataTemplate local:Views.MainPage}"
                       Route="MainPage" />
-        <ShellContent Title="DashBoard"
-                      ContentTemplate="{DataTemplate local:Views.DashBoard}"
-                      Route="DashBoard" />
+        <ShellContent Title="Create Resume"
+                      ContentTemplate="{DataTemplate local:Views.CreateResumePage}"
+                      Route="CreateResumePage" />
     </FlyoutItem>
 </Shell>

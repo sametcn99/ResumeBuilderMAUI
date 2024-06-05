@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ResumeBuilderMAUI.Views.CreateResumePage"
+             xmlns:viewmodel="clr-namespace:ResumeBuilderMAUI.ViewModels"
+             x:DataType="viewmodel:MainViewModel">
+        <ScrollView>
+        <VerticalStackLayout x:Name="Layout"
+                             Spacing="20"
+                             Padding="10">
+            <Label Text="Resume Builder"
+                   FontSize="Title"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center" />
+            <Label Text="Create your resume in minutes"
+                   FontSize="Body"
+                   HorizontalOptions="Center" />
+            <HorizontalStackLayout Spacing="10">
+                <Entry Placeholder="First Name"
+                       Text="{Binding FirstName}"
+                       WidthRequest="150" />
+                <Entry Placeholder="Last Name"
+                       Text="{Binding LastName}"
+                       WidthRequest="150" />
+            </HorizontalStackLayout>
+            <Entry Placeholder="Email"
+                   Text="{Binding Email}" />
+            <Entry Placeholder="Address"
+                   Text="{Binding Address}" />
+            <HorizontalStackLayout Spacing="10">
+                <Entry Placeholder="City"
+                       Text="{Binding City}"
+                       WidthRequest="150" />
+                <Entry Placeholder="State"
+                       Text="{Binding State}"
+                       WidthRequest="150" />
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Spacing="10">
+                <Entry Placeholder="Zip Code"
+                       Text="{Binding ZipCode}"
+                       WidthRequest="150" />
+                <Entry Placeholder="Country"
+                       Text="{Binding Country}"
+                       WidthRequest="150" />
+            </HorizontalStackLayout>
+            <Entry Placeholder="Summary"
+                   Text="{Binding Summary}" />
+            <Entry Placeholder="Certifications"
+                   Text="{Binding Certifications}" />
+            <Entry Placeholder="Languages"
+                   Text="{Binding Languages}" />
+            <Entry Placeholder="LinkedIn"
+                   Text="{Binding LinkedIn}" />
+            <Entry Placeholder="GitHub"
+                   Text="{Binding GitHub}" />
+            <Entry Placeholder="Phone Number"
+                   Text="{Binding PhoneNumber}" />
+            <HorizontalStackLayout Spacing="10">
+                <CollectionView ItemsSource="{Binding SkillList}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Text="{Binding .}" />
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Entry x:Name="SkillEntry"
+                       Placeholder="Add Skill"
+                       WidthRequest="150"
+                       Text="{Binding Skill}" />
+                <Button Text="Add Skill"
+                        Command="{Binding AddSkillCommand}" />
+            </HorizontalStackLayout>
+            <Button Text="Save"
+                    Command="{Binding SaveCommand}"
+                    HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

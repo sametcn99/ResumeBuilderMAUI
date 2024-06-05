@@ -18,6 +18,13 @@
                    Text="{Binding FirstName}" />
             <Entry Placeholder="Last Name"
                    Text="{Binding LastName}" />
+            <Entry Placeholder="Phone Number"
+                   Text="{Binding PhoneNumber}" />
+            <Entry x:Name="Skills"
+                   Placeholder="Skills"
+                   Text="{Binding Skill}" />
+            <Button Text="Add Skill"
+                    Command="{Binding AddSkillCommand}" />
             <Button Text="Save"
                     Command="{Binding SaveCommand}" />
         </VerticalStackLayout>

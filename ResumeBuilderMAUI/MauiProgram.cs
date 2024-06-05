@@ -18,7 +18,7 @@ namespace ResumeBuilderMAUI
                 });
             builder.Services.AddSingleton<MainViewModel>();
             builder.Services.AddSingleton<MainPage>();
-            builder.Services.AddSingleton<DashBoard>();
+            builder.Services.AddSingleton<CreateResumePage>();
 
 #if DEBUG
             builder.Logging.AddDebug();

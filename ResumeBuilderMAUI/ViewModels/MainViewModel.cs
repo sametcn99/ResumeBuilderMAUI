@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace ResumeBuilderMAUI.ViewModels
 {
@@ -13,12 +14,82 @@ namespace ResumeBuilderMAUI.ViewModels
         [NotifyPropertyChangedFor(nameof(Data))]
         private string? lastName;
 
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? summary;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
         private string? phoneNumber;
 
-        public string Data => $"First Name: {FirstName}\nLast Name: {LastName}\nPhone Number: {PhoneNumber}";
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? email;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? website;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? links;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? address;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? skill;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? city;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? state;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? country;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? zipCode;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? certifications;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? languages;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? linkedIn;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? gitHub;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private ObservableCollection<string> skillList = new ObservableCollection<string> { "skill1", "skill2" };
+
+
+        [RelayCommand]
+        void AddSkill()
+        {
+            Application.Current?.MainPage?.DisplayAlert("Skill Added", Skill, "OK");
+            SkillList.Add(Skill);
+            Skill = string.Empty;
+        }
+
+
+
+        public string Data => $"First Name: {FirstName}\nLast Name: {LastName}\nPhone Number: {PhoneNumber}\nSkills: ${SkillList.Count}";
 
         [RelayCommand]
         void Save()
