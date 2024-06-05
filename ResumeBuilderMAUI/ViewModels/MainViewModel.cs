@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using System.Text.Json;
 
 namespace ResumeBuilderMAUI.ViewModels
 {
@@ -87,14 +88,33 @@ namespace ResumeBuilderMAUI.ViewModels
             Skill = string.Empty;
         }
 
+        public object Data => new
+        {
+            FirstName,
+            LastName,
+            PhoneNumber,
+            SkillList,
+            Summary,
+            Email,
+            Website,
+            Links,
+            Address,
+            City,
+            State,
+            Country,
+            ZipCode,
+            Certifications,
+            Languages,
+            LinkedIn,
+            GitHub
+        };
 
 
-        public string Data => $"First Name: {FirstName}\nLast Name: {LastName}\nPhone Number: {PhoneNumber}\nSkills: ${SkillList.Count}";
 
         [RelayCommand]
         void Save()
         {
-            Application.Current?.MainPage?.DisplayAlert("Saved", $"{Data}", "OK");
+            Application.Current?.MainPage?.DisplayAlert("Saved", $"{JsonSerializer.Serialize(Data)}", "OK");
         }
     }
 }
