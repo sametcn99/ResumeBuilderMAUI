@@ -84,7 +84,8 @@ namespace ResumeBuilderMAUI.ViewModels
         void AddSkill()
         {
             Application.Current?.MainPage?.DisplayAlert("Skill Added", Skill, "OK");
-            SkillList.Add(Skill);
+            if (!string.IsNullOrWhiteSpace(Skill))
+                SkillList.Add(Skill);
             Skill = string.Empty;
         }
 
