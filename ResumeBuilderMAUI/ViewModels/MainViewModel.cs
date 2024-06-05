@@ -18,7 +18,7 @@ namespace ResumeBuilderMAUI.ViewModels
         [NotifyPropertyChangedFor(nameof(Data))]
         private string? phoneNumber;
 
-        public string Data => $"First Name: {FirstName}\nLast Name: {LastName}\nPhone Number: {phoneNumber}";
+        public string Data => $"First Name: {FirstName}\nLast Name: {LastName}\nPhone Number: {PhoneNumber}";
 
         [RelayCommand]
         void Save()
@@ -26,9 +26,9 @@ namespace ResumeBuilderMAUI.ViewModels
             Console.WriteLine($"Saving {Data}");
             if (Data.Length > 5)
             {
-                if (firstName.Length < 5 || lastName.Length < 5)
+                if (FirstName.Length < 5 || LastName.Length < 5)
                 {
-                    Application.Current?.MainPage?.DisplayAlert(firstName.Length < 5 ? "First Name" : "Last Name", "Name should be more than 5 characters", "OK");
+                    Application.Current?.MainPage?.DisplayAlert(FirstName.Length < 5 ? "First Name" : "Last Name", "Name should be more than 5 characters", "OK");
                 }
                 else
                 {
