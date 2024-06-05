@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using ResumeBuilderMAUI.ViewModels;
+using ResumeBuilderMAUI.Views;
 
 namespace ResumeBuilderMAUI
 {
@@ -14,6 +16,9 @@ namespace ResumeBuilderMAUI
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+            builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddSingleton<DashBoard>();
 
 #if DEBUG
             builder.Logging.AddDebug();

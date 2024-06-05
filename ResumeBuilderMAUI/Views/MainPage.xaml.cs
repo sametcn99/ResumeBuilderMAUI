@@ -5,12 +5,10 @@ namespace ResumeBuilderMAUI.Views
     public partial class MainPage : ContentPage
     {
 
-        public MainPage()
+        public MainPage(MainViewModel vm)
         {
+            BindingContext = vm;
             InitializeComponent();
-            MainViewModel viewModel = MainViewModel.Instance;
-
-            BindingContext = viewModel;
         }
     }
 }

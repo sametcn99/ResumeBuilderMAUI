@@ -5,20 +5,6 @@ namespace ResumeBuilderMAUI.ViewModels
 {
     public partial class MainViewModel : ObservableObject
     {
-        private static MainViewModel? instance;
-
-        public static MainViewModel Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new MainViewModel();
-                }
-                return instance;
-            }
-        }
-
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
         private string? firstName;
