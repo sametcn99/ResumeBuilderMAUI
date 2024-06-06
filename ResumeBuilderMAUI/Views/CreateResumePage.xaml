@@ -19,14 +19,14 @@
             <Label Text="Personal Information"
                    FontSize="Title"
                    FontAttributes="Bold" />
-            <HorizontalStackLayout Spacing="10">
+            <Grid ColumnDefinitions="*,*">
                 <Entry Placeholder="First Name"
-                       Text="{Binding FirstName}"
-                       WidthRequest="150" />
+                       Grid.Column="0"
+                       Text="{Binding FirstName}" />
                 <Entry Placeholder="Last Name"
-                       Text="{Binding LastName}"
-                       WidthRequest="150" />
-            </HorizontalStackLayout>
+                       Grid.Column="1"
+                       Text="{Binding LastName}" />
+            </Grid>
             <Entry Placeholder="Summary"
                    Text="{Binding Summary}" />
             <Entry Placeholder="Email"
@@ -48,49 +48,86 @@
             <Label Text="Experience"
                    FontSize="Title"
                    FontAttributes="Bold" />
-            <HorizontalStackLayout Spacing="10">
-                <Entry Placeholder="Experience Title"
-                       WidthRequest="250"
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                <Entry Placeholder="Title"
+                       Grid.Column="0"
                        Text="{Binding ExperienceTitle}" />
-                <Entry Placeholder="Experience Company"
-                       WidthRequest="250"
+                <Entry Placeholder="Company"
+                       Grid.Column="1"
                        Text="{Binding ExperienceCompany}" />
-                <Entry Placeholder="Experience Position"
-                       WidthRequest="250"
+                <Entry Placeholder="Position"
+                       Grid.Column="2"
                        Text="{Binding ExperiencePosition}" />
-            </HorizontalStackLayout>
+            </Grid>
             <Editor MinimumHeightRequest="150"
                     Placeholder="Experience Detail"
                     Text="{Binding ExperienceDetail}" />
-            <HorizontalStackLayout Spacing="10">
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="10">
                 <Entry Placeholder="Start Date"
-                       WidthRequest="250"
-                       Text="{Binding ExperienceStartDate}" />
+                       Text="{Binding ExperienceStartDate}"
+                       Grid.Column="0" />
                 <Entry Placeholder="End Date"
-                       WidthRequest="250"
-                       Text="{Binding ExperienceEndDate}" />
-            </HorizontalStackLayout>
+                       Text="{Binding ExperienceEndDate}"
+                       Grid.Column="1" />
+            </Grid>
             <Button Text="Add Experience"
                     Command="{Binding AddExperienceCommand}" />
+
+            <Label Text="Projects"
+                   FontSize="Title"
+                   FontAttributes="Bold" />
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="*,*"
+                  RowSpacing="10"
+                  ColumnSpacing="10">
+                <Entry Placeholder="Project Title"
+                       Grid.Column="0"
+                       Grid.Row="0"
+                       Text="{Binding ProjectTitle}" />
+
+                <Entry Placeholder="Status"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       Text="{Binding ProjectStatus}" />
+                <Entry Placeholder="Start Date"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Text="{Binding ProjectStartDate}" />
+                <Entry Placeholder="End Date"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Text="{Binding ProjectEndDate}" />
+            </Grid>
+            <Entry Placeholder="Link"
+                    Text="{Binding ProjectLink}" />
+            <Editor Placeholder="Project Detail"
+                    MinimumHeightRequest="150"
+                    Text="{Binding ProjectDescription}" />
+
+            <Button Text="Add Experience"
+                    Command="{Binding AddProjectCommand}" />
 
             <Label Text="Skills"
                    FontSize="Title"
                    FontAttributes="Bold" />
-            <HorizontalStackLayout Spacing="10">
+            <VerticalStackLayout Spacing="10">
                 <CollectionView ItemsSource="{Binding SkillList}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Label Text="{Binding .}" />
+                            <HorizontalStackLayout>
+                                <Label Text="{Binding .}"
+                                       FontSize="Small" />
+                            </HorizontalStackLayout>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <Entry x:Name="SkillEntry"
                        Placeholder="Add Skill"
-                       WidthRequest="150"
                        Text="{Binding Skill}" />
                 <Button Text="Add Skill"
                         Command="{Binding AddSkillCommand}" />
-            </HorizontalStackLayout>
+            </VerticalStackLayout>
             <Button Text="Save"
                     Command="{Binding SaveCommand}"
                     HorizontalOptions="Center" />

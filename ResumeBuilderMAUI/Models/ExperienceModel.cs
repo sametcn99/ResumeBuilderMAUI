@@ -11,6 +11,9 @@ namespace ResumeBuilderMAUI.Models
         public string? title;
 
         [ObservableProperty]
+        public string? description;
+
+        [ObservableProperty]
         public string? company;
 
         [ObservableProperty]
@@ -21,8 +24,5 @@ namespace ResumeBuilderMAUI.Models
 
         [ObservableProperty]
         public string? endDate;
-
-        [ObservableProperty]
-        public string? description;
     }
 }

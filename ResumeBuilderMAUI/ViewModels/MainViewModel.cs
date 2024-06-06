@@ -84,15 +84,63 @@ namespace ResumeBuilderMAUI.ViewModels
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
-        private string? experienceDescription;
-
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? experienceCompany;
 
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
         private ObservableCollection<ExperienceModel> experiences = new ObservableCollection<ExperienceModel>();
+
+        // Projects
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? projectTitle;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? projectDescription;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? projectStartDate;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? projectEndDate;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? projectStatus;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private string? projectLink;
+
+        [ObservableProperty]
+        [NotifyPropertyChangedFor(nameof(Data))]
+        private ObservableCollection<ProjectModel> projects = new ObservableCollection<ProjectModel>();
+
+        [RelayCommand]
+        void AddProject()
+        {
+            var projectData = new ProjectModel
+            {
+                Id = Projects.Count + 1,
+                Title = ProjectTitle,
+                Description = ProjectDescription,
+                StartDate = ProjectStartDate,
+                EndDate = ProjectEndDate,
+                Status = ProjectStatus,
+                Link = ProjectLink,
+            };
+            Projects.Add(projectData);
+            Application.Current?.MainPage?.DisplayAlert("Project Added", JsonSerializer.Serialize(projectData), "OK");
+            ProjectTitle = string.Empty;
+            ProjectDescription = string.Empty;
+            ProjectStartDate = string.Empty;
+            ProjectEndDate = string.Empty;
+            ProjectStatus = string.Empty;
+            ProjectLink = string.Empty;
+        }
 
         // Skills
         [ObservableProperty]
@@ -115,6 +163,12 @@ namespace ResumeBuilderMAUI.ViewModels
             };
             Experiences.Add(experienceData);
             Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(experienceData), "OK");
+            ExperienceTitle = string.Empty;
+            ExperienceCompany = string.Empty;
+            ExperienceDetail = string.Empty;
+            ExperiencePosition = string.Empty;
+            ExperienceStartDate = string.Empty;
+            ExperienceEndDate = string.Empty;
         }
 
         [RelayCommand]
@@ -141,7 +195,8 @@ namespace ResumeBuilderMAUI.ViewModels
             Languages,
             LinkedIn,
             GitHub,
-            Experiences
+            Experiences,
+            Projects
         };
         [RelayCommand]
         void ClearData()
@@ -159,6 +214,7 @@ namespace ResumeBuilderMAUI.ViewModels
             LinkedIn = string.Empty;
             GitHub = string.Empty;
             Experiences.Clear();
+            Projects.Clear();
             SkillList.Clear();
         }
 

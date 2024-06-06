@@ -8,7 +8,7 @@ namespace ResumeBuilderMAUI.Models
         public int? id;
 
         [ObservableProperty]
-        public string? projectName;
+        public string? title;
 
         [ObservableProperty]
         public string? description;

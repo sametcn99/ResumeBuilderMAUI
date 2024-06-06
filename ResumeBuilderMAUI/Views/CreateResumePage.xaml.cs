@@ -26,7 +26,6 @@ public partial class CreateResumePage : ContentPage
         }
         else
         {
-
             Navigation.PopAsync();
         }
         return true;

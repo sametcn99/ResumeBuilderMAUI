@@ -4,20 +4,23 @@
              x:Class="ResumeBuilderMAUI.Views.MainPage"
              xmlns:viewmodel="clr-namespace:ResumeBuilderMAUI.ViewModels"
              x:DataType="viewmodel:MainViewModel">
-    <ScrollView>
-        <VerticalStackLayout Padding="30,0"
+    <ScrollView >
+        <VerticalStackLayout 
+                             HorizontalOptions="CenterAndExpand"
+                             VerticalOptions="CenterAndExpand"
                              Spacing="25">
             <Label Text="Hello!"
                    FontSize="Title"
+                   HorizontalOptions="Center"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center" />
+                   />
             <Button Text="Create New Resume"
                     FontSize="Medium"
                     Clicked="OnCreateResumeClicked"
-                    HorizontalOptions="Center" />
+                   />
             <Button Text="View Source Code"
                     Clicked="OnViewSourceCodeClicked"
-                    HorizontalOptions="Center" />
+                   />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

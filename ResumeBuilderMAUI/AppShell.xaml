@@ -6,12 +6,15 @@
        Shell.FlyoutBackdrop="DarkSlateBlue"
        Shell.TabBarIsVisible="False"
        Title="ResumeBuilderMAUI">
-    <FlyoutItem Title="MainPage" FlyoutDisplayOptions="AsMultipleItems" >
+    <!--<FlyoutItem Title="MainPage" FlyoutDisplayOptions="AsMultipleItems" >
         <ShellContent Title="Home"
                       ContentTemplate="{DataTemplate local:Views.MainPage}"
                       Route="MainPage" />
         <ShellContent Title="Create Resume"
                       ContentTemplate="{DataTemplate local:Views.CreateResumePage}"
                       Route="CreateResumePage" />
-    </FlyoutItem>
+    </FlyoutItem>-->
+    <ShellContent
+                  ContentTemplate="{DataTemplate local:Views.MainPage}"
+                  Route="MainPage" />
 </Shell>
