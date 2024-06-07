@@ -119,7 +119,7 @@ namespace ResumeBuilderMAUI.ViewModels
         public ObservableRangeCollection<EducationModel> Educations { get; set; } = new ObservableRangeCollection<EducationModel>();
 
         [RelayCommand]
-        void AddEducationModel()
+        void AddEducation()
         {
             var educationData = new EducationModel
             {

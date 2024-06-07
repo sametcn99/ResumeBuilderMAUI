@@ -45,7 +45,58 @@
                    Text="{Binding GitHub}" />
             <Entry Placeholder="Phone Number"
                    Text="{Binding PhoneNumber}" />
+            <!--Education Section-->
+            <Label Text="Education"
+                   FontSize="Title"
+                   FontAttributes="Bold" />
+            <ListView ItemsSource="{Binding Educations}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:EducationModel">
+                        <ViewCell>
+                            <Frame Background="#3E3E3E">
+                                <StackLayout MaximumWidthRequest="500">
+                                    <Label Text="{Binding Degree}"
+                                           FontSize="Title" />
+                                    <FlexLayout Wrap="Wrap"
+                                                JustifyContent="SpaceBetween">
+                                        <Label Text="{Binding School}"
+                                               FontSize="Default" />
+                                      
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text="{Binding StartDate}"
+                                                   FontSize="Default" />
+                                            <Label Text="{Binding EndDate}"
+                                                   FontSize="Default" />
+                                        </HorizontalStackLayout>
+                                    </FlexLayout>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid ColumnDefinitions="*,*,*"
+                  ColumnSpacing="10">
+                <Entry Placeholder="Degree"
+                       Grid.Column="0"
+                       Text="{Binding EducationDegree}" />
+                <Entry Placeholder="School"
+                       Grid.Column="1"
+                       Text="{Binding EducationSchool}" />
+            </Grid>
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="10">
+                <Entry Placeholder="Start Date"
+                       Text="{Binding EducationStartDate}"
+                       Grid.Column="0" />
+                <Entry Placeholder="End Date"
+                       Text="{Binding EducationEndDate}"
+                       Grid.Column="1" />
+            </Grid>
+            <Button Text="Add Education"
+                    Command="{Binding AddEducationCommand}" />
 
+            <!--Experience Section-->
             <Label Text="Experience"
                    FontSize="Title"
                    FontAttributes="Bold" />
@@ -105,9 +156,38 @@
             <Button Text="Add Experience"
                     Command="{Binding AddExperienceCommand}" />
 
+            
             <Label Text="Projects"
                    FontSize="Title"
                    FontAttributes="Bold" />
+
+            <ListView ItemsSource="{Binding Projects}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ProjectModel">
+                        <ViewCell>
+                            <Frame Background="#3E3E3E">
+                                <StackLayout MaximumWidthRequest="500">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="Title" />
+                                    <FlexLayout Wrap="Wrap"
+                                                JustifyContent="SpaceBetween">
+                                        <Label Text="{Binding Description}"
+                                               FontSize="Default" />
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text="{Binding StartDate}"
+                                                   FontSize="Default" />
+                                            <Label Text="{Binding EndDate}"
+                                                   FontSize="Default" />
+                                        </HorizontalStackLayout>
+                                    </FlexLayout>
+                                    <Label Text="{Binding Description}"
+                                           FontSize="Caption" />
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
             <Grid ColumnDefinitions="*,*"
                   RowDefinitions="*,*"
                   RowSpacing="10"
