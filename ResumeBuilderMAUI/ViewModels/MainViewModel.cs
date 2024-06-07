@@ -227,7 +227,7 @@ namespace ResumeBuilderMAUI.ViewModels
         // Skills
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
-        private ObservableCollection<string> skillList = new ObservableCollection<string> { "skill1", "skill2" };
+        private ObservableCollection<string> skillList = new ObservableCollection<string> { };
 
 
         [RelayCommand]

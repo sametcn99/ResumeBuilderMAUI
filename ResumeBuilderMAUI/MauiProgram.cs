@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ResumeBuilderMAUI.Services;
 using ResumeBuilderMAUI.ViewModels;
 using ResumeBuilderMAUI.Views;
 
@@ -20,6 +21,8 @@ namespace ResumeBuilderMAUI
             builder.Services.AddSingleton<MainViewModel>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<CreateResumePage>();
+            builder.Services.AddSingleton<ResumeServices>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
