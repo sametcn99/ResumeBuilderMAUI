@@ -6,8 +6,8 @@
              x:DataType="viewmodel:MainViewModel">
     <ScrollView >
         <VerticalStackLayout 
-                             HorizontalOptions="CenterAndExpand"
-                             VerticalOptions="CenterAndExpand"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
                              Spacing="25">
             <Label Text="Hello!"
                    FontSize="Title"

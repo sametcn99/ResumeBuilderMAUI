@@ -90,6 +90,29 @@ namespace ResumeBuilderMAUI.ViewModels
         [NotifyPropertyChangedFor(nameof(Data))]
         private ObservableCollection<ExperienceModel> experiences = new ObservableCollection<ExperienceModel>();
 
+        [RelayCommand]
+        void AddExperience()
+        {
+            var experienceData = new ExperienceModel
+            {
+                Id = Experiences.Count + 1,
+                Title = ExperienceTitle,
+                Description = ExperienceDetail,
+                Company = ExperienceCompany,
+                Position = ExperiencePosition,
+                StartDate = ExperienceStartDate,
+                EndDate = ExperienceEndDate,
+            };
+            Experiences.Add(experienceData);
+            Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(experienceData), "OK");
+            ExperienceTitle = string.Empty;
+            ExperienceCompany = string.Empty;
+            ExperienceDetail = string.Empty;
+            ExperiencePosition = string.Empty;
+            ExperienceStartDate = string.Empty;
+            ExperienceEndDate = string.Empty;
+        }
+
         // Projects
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
@@ -148,28 +171,7 @@ namespace ResumeBuilderMAUI.ViewModels
         private ObservableCollection<string> skillList = new ObservableCollection<string> { "skill1", "skill2" };
 
 
-        [RelayCommand]
-        void AddExperience()
-        {
-            var experienceData = new ExperienceModel
-            {
-                Id = Experiences.Count + 1,
-                Title = ExperienceTitle,
-                Description = ExperienceDetail,
-                Company = ExperienceCompany,
-                Position = ExperiencePosition,
-                StartDate = ExperienceStartDate,
-                EndDate = ExperienceEndDate,
-            };
-            Experiences.Add(experienceData);
-            Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(experienceData), "OK");
-            ExperienceTitle = string.Empty;
-            ExperienceCompany = string.Empty;
-            ExperienceDetail = string.Empty;
-            ExperiencePosition = string.Empty;
-            ExperienceStartDate = string.Empty;
-            ExperienceEndDate = string.Empty;
-        }
+
 
         [RelayCommand]
         void AddSkill()

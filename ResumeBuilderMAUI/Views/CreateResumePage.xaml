@@ -48,6 +48,16 @@
             <Label Text="Experience"
                    FontSize="Title"
                    FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding Experiences}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding .}"
+                                   FontSize="Small" />
+                        </HorizontalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
                 <Entry Placeholder="Title"
                        Grid.Column="0"
