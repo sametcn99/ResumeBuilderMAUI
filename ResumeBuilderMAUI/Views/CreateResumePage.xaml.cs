@@ -11,7 +11,7 @@ public partial class CreateResumePage : ContentPage
     }
     protected override bool OnBackButtonPressed()
     {
-        if (!string.IsNullOrEmpty((BindingContext as MainViewModel).FirstName))
+        if (!string.IsNullOrEmpty((BindingContext as MainViewModel)?.FirstName))
         {
             _ = Dispatcher.DispatchAsync(async () =>
             {
@@ -19,7 +19,7 @@ public partial class CreateResumePage : ContentPage
                 if (result)
                 {
                     await Navigation.PopAsync();
-                    (BindingContext as MainViewModel).ClearDataCommand.Execute(null);
+                    (BindingContext as MainViewModel)?.ClearDataCommand.Execute(null);
                 }
 
             });

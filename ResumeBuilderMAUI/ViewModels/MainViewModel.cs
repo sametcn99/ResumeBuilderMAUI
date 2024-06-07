@@ -10,81 +10,62 @@ namespace ResumeBuilderMAUI.ViewModels
     public partial class MainViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? firstName;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? lastName;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? summary;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? phoneNumber;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? email;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? website;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? links;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? linkedIn;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? gitHub;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? certifications;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? languages;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? address;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? skill;
 
 
         // Experience
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? experienceTitle;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? experienceDetail;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? experiencePosition;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? experienceStartDate;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? experienceEndDate;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? experienceCompany;
 
         //[ObservableProperty]
@@ -116,35 +97,70 @@ namespace ResumeBuilderMAUI.ViewModels
             ExperienceEndDate = string.Empty;
         }
 
+        // Education
+        [ObservableProperty]
+        private string? educationSchool;
+
+        [ObservableProperty]
+        private string? educationDegree;
+
+        [ObservableProperty]
+        private string? educationFieldOfStudy;
+
+        [ObservableProperty]
+        private string? educationStartDate;
+
+        [ObservableProperty]
+        private string? educationEndDate;
+
+        [ObservableProperty]
+        private string? educationGrade;
+
+        public ObservableRangeCollection<EducationModel> Educations { get; set; } = new ObservableRangeCollection<EducationModel>();
+
+        [RelayCommand]
+        void AddEducationModel()
+        {
+            var educationData = new EducationModel
+            {
+                Id = Educations.Count + 1,
+                School = EducationSchool,
+                Degree = EducationDegree,
+                FieldOfStudy = EducationFieldOfStudy,
+                StartDate = EducationStartDate,
+                EndDate = EducationEndDate,
+                Grade = EducationGrade,
+            };
+            Educations.Add(educationData);
+            Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(educationData), "OK");
+            EducationSchool = string.Empty;
+            EducationDegree = string.Empty;
+            EducationFieldOfStudy = string.Empty;
+            EducationStartDate = string.Empty;
+            EducationEndDate = string.Empty;
+            EducationGrade = string.Empty;
+        }
+
         // Projects
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? projectTitle;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? projectDescription;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? projectStartDate;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? projectEndDate;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? projectStatus;
 
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private string? projectLink;
 
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
-        private ObservableCollection<ProjectModel> projects = new ObservableCollection<ProjectModel>();
-
+        public ObservableRangeCollection<ProjectModel> Projects { get; set; } = new ObservableRangeCollection<ProjectModel>();
         [RelayCommand]
         void AddProject()
         {
@@ -172,8 +188,6 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
         private ObservableCollection<string> skillList = new ObservableCollection<string> { "skill1", "skill2" };
-
-
 
 
         [RelayCommand]

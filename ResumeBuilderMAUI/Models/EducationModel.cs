@@ -4,25 +4,12 @@ namespace ResumeBuilderMAUI.Models
 {
     public partial class EducationModel : ObservableObject
     {
-        [ObservableProperty]
-        public int? id;
-
-        [ObservableProperty]
-        public string? school;
-
-        [ObservableProperty]
-        public string? degree;
-
-        [ObservableProperty]
-        public string? fieldOfStudy;
-
-        [ObservableProperty]
-        public string? startDate;
-
-        [ObservableProperty]
-        public string? endDate;
-
-        [ObservableProperty]
-        public string? grade;
+        public int? Id { get; set; }
+        public string? School { get; set; }
+        public string? Degree { get; set; }
+        public string? FieldOfStudy { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+        public string? Grade { get; set; }
     }
 }

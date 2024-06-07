@@ -53,22 +53,33 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:ExperienceModel">
                         <ViewCell>
-                            <Frame>
-                                <StackLayout>
-                                    <Label Text="{Binding Title}" />
-                                    <Label Text="{Binding Description}" />
-                                    <Label Text="{Binding Company}" />
-                                    <Label Text="{Binding StartDate}" />
-                                    <Label Text="{Binding EndDate}" />
-                                    <Label Text="{Binding Position}" />
+                            <Frame Background="#3E3E3E">
+                                <StackLayout MaximumWidthRequest="500">
+                                    <Label Text="{Binding Title}"
+                                           FontSize="Title" />
+                                    <FlexLayout Wrap="Wrap"
+                                                JustifyContent="SpaceBetween">
+                                        <Label Text="{Binding Company}"
+                                               FontSize="Default" />
+                                        <Label Text="{Binding Position}"
+                                               FontSize="Default" />
+                                        <HorizontalStackLayout Spacing="5">
+                                            <Label Text="{Binding StartDate}"
+                                                   FontSize="Default" />
+                                            <Label Text="{Binding EndDate}"
+                                                   FontSize="Default" />
+                                        </HorizontalStackLayout>
+                                    </FlexLayout>
+                                    <Label Text="{Binding Description}"
+                                           FontSize="Caption" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
-
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+            <Grid ColumnDefinitions="*,*,*"
+                  ColumnSpacing="10">
                 <Entry Placeholder="Title"
                        Grid.Column="0"
                        Text="{Binding ExperienceTitle}" />
@@ -120,7 +131,7 @@
                        Text="{Binding ProjectEndDate}" />
             </Grid>
             <Entry Placeholder="Link"
-                    Text="{Binding ProjectLink}" />
+                   Text="{Binding ProjectLink}" />
             <Editor Placeholder="Project Detail"
                     MinimumHeightRequest="150"
                     Text="{Binding ProjectDescription}" />
