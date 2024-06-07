@@ -54,7 +54,7 @@ namespace ResumeBuilderMAUI.ViewModels
         private string? experienceTitle;
 
         [ObservableProperty]
-        private string? experienceDetail;
+        private string? experienceDescription;
 
         [ObservableProperty]
         private string? experiencePosition;
@@ -74,6 +74,16 @@ namespace ResumeBuilderMAUI.ViewModels
 
         public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = new ObservableRangeCollection<ExperienceModel>();
 
+        void ClearExperienceEntries()
+        {
+            ExperienceTitle = string.Empty;
+            ExperienceCompany = string.Empty;
+            ExperienceDescription = string.Empty;
+            ExperiencePosition = string.Empty;
+            ExperienceStartDate = string.Empty;
+            ExperienceEndDate = string.Empty;
+        }
+
         [RelayCommand]
         void AddExperience()
         {
@@ -81,7 +91,7 @@ namespace ResumeBuilderMAUI.ViewModels
             {
                 Id = Experiences.Count + 1,
                 Title = ExperienceTitle,
-                Description = ExperienceDetail,
+                Description = ExperienceDescription,
                 Company = ExperienceCompany,
                 Position = ExperiencePosition,
                 StartDate = ExperienceStartDate,
@@ -89,12 +99,7 @@ namespace ResumeBuilderMAUI.ViewModels
             };
             Experiences.Add(experienceData);
             Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(experienceData), "OK");
-            ExperienceTitle = string.Empty;
-            ExperienceCompany = string.Empty;
-            ExperienceDetail = string.Empty;
-            ExperiencePosition = string.Empty;
-            ExperienceStartDate = string.Empty;
-            ExperienceEndDate = string.Empty;
+            ClearExperienceEntries();
         }
 
         // Education
@@ -102,10 +107,11 @@ namespace ResumeBuilderMAUI.ViewModels
         private string? educationSchool;
 
         [ObservableProperty]
-        private string? educationDegree;
+        private string? educationDescription;
 
         [ObservableProperty]
-        private string? educationFieldOfStudy;
+        private string? educationDegree;
+
 
         [ObservableProperty]
         private string? educationStartDate;
@@ -118,6 +124,16 @@ namespace ResumeBuilderMAUI.ViewModels
 
         public ObservableRangeCollection<EducationModel> Educations { get; set; } = new ObservableRangeCollection<EducationModel>();
 
+        void ClearEducationEntries()
+        {
+            EducationSchool = string.Empty;
+            EducationDegree = string.Empty;
+            EducationStartDate = string.Empty;
+            EducationEndDate = string.Empty;
+            EducationGrade = string.Empty;
+            EducationDescription = string.Empty;
+        }
+
         [RelayCommand]
         void AddEducation()
         {
@@ -126,19 +142,14 @@ namespace ResumeBuilderMAUI.ViewModels
                 Id = Educations.Count + 1,
                 School = EducationSchool,
                 Degree = EducationDegree,
-                FieldOfStudy = EducationFieldOfStudy,
                 StartDate = EducationStartDate,
                 EndDate = EducationEndDate,
                 Grade = EducationGrade,
+                Description = EducationDescription,
             };
             Educations.Add(educationData);
             Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(educationData), "OK");
-            EducationSchool = string.Empty;
-            EducationDegree = string.Empty;
-            EducationFieldOfStudy = string.Empty;
-            EducationStartDate = string.Empty;
-            EducationEndDate = string.Empty;
-            EducationGrade = string.Empty;
+            ClearEducationEntries();
         }
 
         // Projects
@@ -160,6 +171,16 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         private string? projectLink;
 
+        void ClearProjectEntries()
+        {
+            ProjectTitle = string.Empty;
+            ProjectDescription = string.Empty;
+            ProjectStartDate = string.Empty;
+            ProjectEndDate = string.Empty;
+            ProjectStatus = string.Empty;
+            ProjectLink = string.Empty;
+        }
+
         public ObservableRangeCollection<ProjectModel> Projects { get; set; } = new ObservableRangeCollection<ProjectModel>();
         [RelayCommand]
         void AddProject()
@@ -176,12 +197,7 @@ namespace ResumeBuilderMAUI.ViewModels
             };
             Projects.Add(projectData);
             Application.Current?.MainPage?.DisplayAlert("Project Added", JsonSerializer.Serialize(projectData), "OK");
-            ProjectTitle = string.Empty;
-            ProjectDescription = string.Empty;
-            ProjectStartDate = string.Empty;
-            ProjectEndDate = string.Empty;
-            ProjectStatus = string.Empty;
-            ProjectLink = string.Empty;
+            ClearProjectEntries();
         }
 
         // Skills
@@ -217,6 +233,7 @@ namespace ResumeBuilderMAUI.ViewModels
             Experiences,
             Projects
         };
+
         [RelayCommand]
         void ClearData()
         {

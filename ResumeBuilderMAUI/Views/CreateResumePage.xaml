@@ -9,6 +9,8 @@
         <VerticalStackLayout x:Name="Layout"
                              Spacing="20"
                              Padding="20">
+
+            <!--Personal Information Section-->
             <Label Text="Resume Builder"
                    FontSize="Title"
                    FontAttributes="Bold"
@@ -45,6 +47,7 @@
                    Text="{Binding GitHub}" />
             <Entry Placeholder="Phone Number"
                    Text="{Binding PhoneNumber}" />
+
             <!--Education Section-->
             <Label Text="Education"
                    FontSize="Title"
@@ -55,20 +58,24 @@
                         <ViewCell>
                             <Frame Background="#3E3E3E">
                                 <StackLayout MaximumWidthRequest="500">
-                                    <Label Text="{Binding Degree}"
-                                           FontSize="Title" />
+                                    <FlexLayout Wrap="Wrap"
+                                                AlignItems="End">
+                                        <Label Text="{Binding School}"
+                                               FontSize="Title" />
+                                        <Label Text="{Binding Degree}"
+                                               FontSize="Default" />
+                                    </FlexLayout>
                                     <FlexLayout Wrap="Wrap"
                                                 JustifyContent="SpaceBetween">
-                                        <Label Text="{Binding School}"
+                                        <Label Text="{Binding Grade}"
                                                FontSize="Default" />
-                                      
-                                        <HorizontalStackLayout Spacing="5">
-                                            <Label Text="{Binding StartDate}"
-                                                   FontSize="Default" />
-                                            <Label Text="{Binding EndDate}"
-                                                   FontSize="Default" />
-                                        </HorizontalStackLayout>
+                                        <Label Text="{Binding StartDate}"
+                                               FontSize="Default" />
+                                        <Label Text="{Binding EndDate}"
+                                               FontSize="Default" />
                                     </FlexLayout>
+                                    <Label Text="{Binding Description}"
+                                           FontSize="Caption" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
@@ -77,12 +84,15 @@
             </ListView>
             <Grid ColumnDefinitions="*,*,*"
                   ColumnSpacing="10">
-                <Entry Placeholder="Degree"
-                       Grid.Column="0"
-                       Text="{Binding EducationDegree}" />
                 <Entry Placeholder="School"
-                       Grid.Column="1"
+                       Grid.Column="0"
                        Text="{Binding EducationSchool}" />
+                <Entry Placeholder="Degree"
+                       Grid.Column="1"
+                       Text="{Binding EducationDegree}" />
+                <Entry Placeholder="Grade"
+                       Grid.Column="2"
+                       Text="{Binding EducationGrade}" />
             </Grid>
             <Grid ColumnDefinitions="*,*"
                   ColumnSpacing="10">
@@ -93,6 +103,9 @@
                        Text="{Binding EducationEndDate}"
                        Grid.Column="1" />
             </Grid>
+            <Editor MinimumHeightRequest="150"
+                    Placeholder="Experience Detail"
+                    Text="{Binding EducationDescription}" />
             <Button Text="Add Education"
                     Command="{Binding AddEducationCommand}" />
 
@@ -143,7 +156,7 @@
             </Grid>
             <Editor MinimumHeightRequest="150"
                     Placeholder="Experience Detail"
-                    Text="{Binding ExperienceDetail}" />
+                    Text="{Binding ExperienceDescription}" />
             <Grid ColumnDefinitions="*,*"
                   ColumnSpacing="10">
                 <Entry Placeholder="Start Date"
@@ -156,11 +169,10 @@
             <Button Text="Add Experience"
                     Command="{Binding AddExperienceCommand}" />
 
-            
+            <!--Project Section-->
             <Label Text="Projects"
                    FontSize="Title"
                    FontAttributes="Bold" />
-
             <ListView ItemsSource="{Binding Projects}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:ProjectModel">
@@ -171,14 +183,14 @@
                                            FontSize="Title" />
                                     <FlexLayout Wrap="Wrap"
                                                 JustifyContent="SpaceBetween">
-                                        <Label Text="{Binding Description}"
+                                        <Label Text="{Binding Link}"
                                                FontSize="Default" />
-                                        <HorizontalStackLayout Spacing="5">
-                                            <Label Text="{Binding StartDate}"
-                                                   FontSize="Default" />
-                                            <Label Text="{Binding EndDate}"
-                                                   FontSize="Default" />
-                                        </HorizontalStackLayout>
+                                        <Label Text="{Binding StartDate}"
+                                               FontSize="Default" />
+                                        <Label Text="{Binding EndDate}"
+                                               FontSize="Default" />
+                                        <Label Text="{Binding Status}"
+                                               FontSize="Default" />
                                     </FlexLayout>
                                     <Label Text="{Binding Description}"
                                            FontSize="Caption" />
@@ -215,10 +227,10 @@
             <Editor Placeholder="Project Detail"
                     MinimumHeightRequest="150"
                     Text="{Binding ProjectDescription}" />
-
-            <Button Text="Add Experience"
+            <Button Text="Add Project"
                     Command="{Binding AddProjectCommand}" />
 
+            <!--Skill Section-->
             <Label Text="Skills"
                    FontSize="Title"
                    FontAttributes="Bold" />
@@ -226,10 +238,10 @@
                 <CollectionView ItemsSource="{Binding SkillList}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <HorizontalStackLayout>
-                                <Label Text="{Binding .}"
-                                       FontSize="Small" />
-                            </HorizontalStackLayout>
+                            <Frame Background="#3E3E3E">
+                                    <Label Text="{Binding .}"
+                                           FontSize="Small" />
+                            </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
@@ -239,6 +251,8 @@
                 <Button Text="Add Skill"
                         Command="{Binding AddSkillCommand}" />
             </VerticalStackLayout>
+            
+            <!--Save Button-->
             <Button Text="Save"
                     Command="{Binding SaveCommand}"
                     HorizontalOptions="Center" />
