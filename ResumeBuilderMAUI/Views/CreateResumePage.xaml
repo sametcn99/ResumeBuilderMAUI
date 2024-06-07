@@ -9,8 +9,6 @@
         <VerticalStackLayout x:Name="Layout"
                              Spacing="20"
                              Padding="20">
-
-            <!--Personal Information Section-->
             <Label Text="Resume Builder"
                    FontSize="Title"
                    FontAttributes="Bold"
@@ -19,6 +17,7 @@
                    FontSize="Body"
                    HorizontalOptions="Center" />
 
+            <!--Personal Information Section-->
             <Label Text="Personal Information"
                    FontSize="Title"
                    FontAttributes="Bold" />
@@ -239,8 +238,8 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame Background="#3E3E3E">
-                                    <Label Text="{Binding .}"
-                                           FontSize="Small" />
+                                <Label Text="{Binding .}"
+                                       FontSize="Small" />
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
@@ -251,7 +250,7 @@
                 <Button Text="Add Skill"
                         Command="{Binding AddSkillCommand}" />
             </VerticalStackLayout>
-            
+
             <!--Save Button-->
             <Button Text="Save"
                     Command="{Binding SaveCommand}"
