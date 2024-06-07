@@ -71,6 +71,7 @@ namespace ResumeBuilderMAUI.ViewModels
 
         public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = new ObservableRangeCollection<ExperienceModel>();
 
+
         void ClearExperienceEntries()
         {
             ExperienceTitle = string.Empty;
@@ -95,7 +96,6 @@ namespace ResumeBuilderMAUI.ViewModels
                 EndDate = ExperienceEndDate,
             };
             Experiences.Add(experienceData);
-            Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(experienceData), "OK");
             ClearExperienceEntries();
         }
 
@@ -155,7 +155,6 @@ namespace ResumeBuilderMAUI.ViewModels
                 Description = EducationDescription,
             };
             Educations.Add(educationData);
-            Application.Current?.MainPage?.DisplayAlert("Experience Added", JsonSerializer.Serialize(educationData), "OK");
             ClearEducationEntries();
         }
 
@@ -212,7 +211,6 @@ namespace ResumeBuilderMAUI.ViewModels
                 Link = ProjectLink,
             };
             Projects.Add(projectData);
-            Application.Current?.MainPage?.DisplayAlert("Project Added", JsonSerializer.Serialize(projectData), "OK");
             ClearProjectEntries();
         }
 
@@ -235,7 +233,6 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void AddSkill()
         {
-            Application.Current?.MainPage?.DisplayAlert("Skill Added", Skill, "OK");
             if (!string.IsNullOrWhiteSpace(Skill))
                 SkillList.Add(Skill);
             Skill = string.Empty;
@@ -244,7 +241,6 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void RemoveSkill(string skill)
         {
-            Application.Current?.MainPage?.DisplayAlert("Skill Removed", skill, "OK");
             SkillList.Remove(skill);
         }
 
@@ -267,7 +263,7 @@ namespace ResumeBuilderMAUI.ViewModels
         };
 
         [RelayCommand]
-        void ClearData()
+        void ClearEntries()
         {
             FirstName = string.Empty;
             LastName = string.Empty;
@@ -289,7 +285,7 @@ namespace ResumeBuilderMAUI.ViewModels
         void Save()
         {
             Application.Current?.MainPage?.DisplayAlert("Saved", $"{JsonSerializer.Serialize(Data)}", "OK");
-            ClearData();
+            ClearEntries();
         }
     }
 }
