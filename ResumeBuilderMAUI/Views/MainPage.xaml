@@ -10,35 +10,53 @@
             <Label Text="Hello!"
                    FontSize="Title"
                    HorizontalOptions="Center"
-                   FontAttributes="Bold" />
+                   FontAttributes="Bold"
+                   TextColor="#3498db" />
+
             <!-- CV Selection Section -->
 
-            <Picker x:Name="NamePicker"
-                    Title="Select Name">
-                <Picker.Items>
-                    <x:String>John Doe</x:String>
-                    <x:String>Jane Smith</x:String>
-                    <x:String>Michael Brown</x:String>
-                </Picker.Items>
-            </Picker>
+            <VerticalStackLayout Spacing="15">
+                <Picker x:Name="NamePicker"
+                        Title="Select Name">
+                    <Picker.Items>
+                        <x:String>John Doe</x:String>
+                        <x:String>Jane Smith</x:String>
+                        <x:String>Michael Brown</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Picker x:Name="CVPicker"
+                        Title="Select Resume">
+                    <Picker.Items>
+                        <x:String>CV 1</x:String>
+                        <x:String>CV 2</x:String>
+                        <x:String>CV 3</x:String>
+                    </Picker.Items>
+                </Picker>
+            </VerticalStackLayout>
 
-            <Picker x:Name="CVPicker"
-                    Title="Select Resume">
-                <Picker.Items>
-                    <x:String>CV 1</x:String>
-                    <x:String>CV 2</x:String>
-                    <x:String>CV 3</x:String>
-                </Picker.Items>
-            </Picker>
-            <Button Text="Continue" />
+            <Button Text="Continue"
+                    BackgroundColor="#2980b9"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HorizontalOptions="Center"
+                    WidthRequest="200" />
 
             <Button Text="Create New Resume"
-                    FontSize="Medium"
-                    MaximumWidthRequest="300"
+                    BackgroundColor="#27ae60"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
                     Clicked="OnCreateResumeClicked" />
+
             <Button Text="View Source Code"
-                    MaximumWidthRequest="300"
+                    BackgroundColor="#e67e22"
+                    TextColor="White"
+                    CornerRadius="20"
+                    HorizontalOptions="Center"
+                    WidthRequest="200"
                     Clicked="OnViewSourceCodeClicked" />
         </VerticalStackLayout>
     </ScrollView>
+
 </ContentPage>
