@@ -14,7 +14,6 @@
                    TextColor="#3498db" />
 
             <!-- CV Selection Section -->
-
             <VerticalStackLayout Spacing="15">
                 <Picker x:Name="NamePicker"
                         Title="Select Name">
@@ -33,7 +32,6 @@
                     </Picker.Items>
                 </Picker>
             </VerticalStackLayout>
-
             <Button Text="Continue"
                     BackgroundColor="#2980b9"
                     TextColor="White"
