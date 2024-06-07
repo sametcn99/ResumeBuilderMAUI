@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ResumeBuilderMAUI.Views.CreateResumePage"
+             xmlns:model="clr-namespace:ResumeBuilderMAUI.Models"
              xmlns:viewmodel="clr-namespace:ResumeBuilderMAUI.ViewModels"
              x:DataType="viewmodel:MainViewModel">
     <ScrollView>
@@ -48,16 +49,25 @@
             <Label Text="Experience"
                    FontSize="Title"
                    FontAttributes="Bold" />
-            <CollectionView ItemsSource="{Binding Experiences}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <HorizontalStackLayout>
-                            <Label Text="{Binding .}"
-                                   FontSize="Small" />
-                        </HorizontalStackLayout>
+            <ListView ItemsSource="{Binding Experiences}">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="model:ExperienceModel">
+                        <ViewCell>
+                            <Frame>
+                                <StackLayout>
+                                    <Label Text="{Binding Title}" />
+                                    <Label Text="{Binding Description}" />
+                                    <Label Text="{Binding Company}" />
+                                    <Label Text="{Binding StartDate}" />
+                                    <Label Text="{Binding EndDate}" />
+                                    <Label Text="{Binding Position}" />
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
             <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
                 <Entry Placeholder="Title"
                        Grid.Column="0"

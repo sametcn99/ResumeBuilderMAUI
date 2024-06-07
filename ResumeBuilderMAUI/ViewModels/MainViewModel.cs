@@ -1,12 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MvvmHelpers;
 using ResumeBuilderMAUI.Models;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 
 namespace ResumeBuilderMAUI.ViewModels
 {
-    public partial class MainViewModel : ObservableObject
+    public partial class MainViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
@@ -86,9 +87,11 @@ namespace ResumeBuilderMAUI.ViewModels
         [NotifyPropertyChangedFor(nameof(Data))]
         private string? experienceCompany;
 
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
-        private ObservableCollection<ExperienceModel> experiences = new ObservableCollection<ExperienceModel>();
+        //[ObservableProperty]
+        //[NotifyPropertyChangedFor(nameof(Data))]
+        //private ObservableCollection<ExperienceModel> experiences = new ObservableCollection<ExperienceModel>();
+
+        public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = new ObservableRangeCollection<ExperienceModel>();
 
         [RelayCommand]
         void AddExperience()
