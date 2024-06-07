@@ -9,6 +9,7 @@ namespace ResumeBuilderMAUI.ViewModels
 {
     public partial class MainViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
+        // Personal Information
         [ObservableProperty]
         private string? firstName;
 
@@ -28,9 +29,6 @@ namespace ResumeBuilderMAUI.ViewModels
         private string? website;
 
         [ObservableProperty]
-        private string? links;
-
-        [ObservableProperty]
         private string? linkedIn;
 
         [ObservableProperty]
@@ -47,7 +45,6 @@ namespace ResumeBuilderMAUI.ViewModels
 
         [ObservableProperty]
         private string? skill;
-
 
         // Experience
         [ObservableProperty]
@@ -102,6 +99,12 @@ namespace ResumeBuilderMAUI.ViewModels
             ClearExperienceEntries();
         }
 
+        [RelayCommand]
+        void RemoveExperience(int id)
+        {
+            Experiences.Remove(Experiences.FirstOrDefault(x => x.Id == id));
+        }
+
         // Education
         [ObservableProperty]
         private string? educationSchool;
@@ -152,6 +155,11 @@ namespace ResumeBuilderMAUI.ViewModels
             ClearEducationEntries();
         }
 
+        [RelayCommand]
+        void RemoveEducation(int id)
+        {
+            Educations.Remove(Educations.FirstOrDefault(x => x.Id == id));
+        }
         // Projects
         [ObservableProperty]
         private string? projectTitle;
@@ -200,6 +208,12 @@ namespace ResumeBuilderMAUI.ViewModels
             ClearProjectEntries();
         }
 
+        [RelayCommand]
+        void RemoveProject(int id)
+        {
+            Projects.Remove(Projects.FirstOrDefault(x => x.Id == id));
+        }
+
         // Skills
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
@@ -215,6 +229,13 @@ namespace ResumeBuilderMAUI.ViewModels
             Skill = string.Empty;
         }
 
+        [RelayCommand]
+        void RemoveSkill(string skill)
+        {
+            Application.Current?.MainPage?.DisplayAlert("Skill Removed", skill, "OK");
+            SkillList.Remove(skill);
+        }
+
         public object Data => new
         {
             FirstName,
@@ -224,7 +245,6 @@ namespace ResumeBuilderMAUI.ViewModels
             SkillList,
             Email,
             Website,
-            Links,
             Address,
             Certifications,
             Languages,
@@ -243,7 +263,6 @@ namespace ResumeBuilderMAUI.ViewModels
             PhoneNumber = string.Empty;
             Email = string.Empty;
             Website = string.Empty;
-            Links = string.Empty;
             Address = string.Empty;
             Certifications = string.Empty;
             Languages = string.Empty;

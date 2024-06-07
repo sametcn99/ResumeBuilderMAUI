@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             x:Name="ThisPage"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ResumeBuilderMAUI.Views.CreateResumePage"
              xmlns:model="clr-namespace:ResumeBuilderMAUI.Models"
@@ -33,6 +34,8 @@
                    Text="{Binding Summary}" />
             <Entry Placeholder="Email"
                    Text="{Binding Email}" />
+            <Entry Placeholder="Website"
+                   Text="{Binding Website}" />
             <Editor Placeholder="Address"
                     MinimumHeightRequest="100"
                     Text="{Binding Address}" />
@@ -75,6 +78,9 @@
                                     </FlexLayout>
                                     <Label Text="{Binding Description}"
                                            FontSize="Caption" />
+                                    <Button Text="Remove"
+                                            Command="{Binding BindingContext.RemoveEducationCommand, Source={x:Reference Layout}}"
+                                            CommandParameter="{Binding Id}" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
@@ -135,6 +141,9 @@
                                     </FlexLayout>
                                     <Label Text="{Binding Description}"
                                            FontSize="Caption" />
+                                    <Button Text="Remove"
+                                            Command="{Binding BindingContext.RemoveExperienceCommand, Source={x:Reference Layout}}"
+                                            CommandParameter="{Binding Id}" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
@@ -174,10 +183,11 @@
                    FontAttributes="Bold" />
             <ListView ItemsSource="{Binding Projects}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:ProjectModel">
+                    <DataTemplate>
                         <ViewCell>
                             <Frame Background="#3E3E3E">
-                                <StackLayout MaximumWidthRequest="500">
+                                <StackLayout x:DataType="model:ProjectModel"
+                                             MaximumWidthRequest="500">
                                     <Label Text="{Binding Title}"
                                            FontSize="Title" />
                                     <FlexLayout Wrap="Wrap"
@@ -193,6 +203,9 @@
                                     </FlexLayout>
                                     <Label Text="{Binding Description}"
                                            FontSize="Caption" />
+                                    <Button Text="Remove"
+                                            Command="{Binding BindingContext.RemoveProjectCommand, Source={x:Reference Layout}}"
+                                            CommandParameter="{Binding Id}" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
@@ -238,8 +251,13 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Frame Background="#3E3E3E">
-                                <Label Text="{Binding .}"
-                                       FontSize="Small" />
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <Label Text="{Binding .}"
+                                           FontSize="Small" />
+                                    <Button Text="Remove"
+                                            Command="{Binding BindingContext.RemoveSkillCommand, Source={x:Reference Layout}}"
+                                            CommandParameter="{Binding .}" />
+                                </FlexLayout>
                             </Frame>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
