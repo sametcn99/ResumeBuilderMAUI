@@ -102,7 +102,11 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void RemoveExperience(int id)
         {
-            Experiences.Remove(Experiences.FirstOrDefault(x => x.Id == id));
+            var experienceToRemove = Experiences.FirstOrDefault(x => x.Id == id);
+            if (experienceToRemove != null)
+            {
+                Experiences.Remove(experienceToRemove);
+            }
         }
 
         // Education
@@ -158,7 +162,11 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void RemoveEducation(int id)
         {
-            Educations.Remove(Educations.FirstOrDefault(x => x.Id == id));
+            var educationToRemove = Educations.FirstOrDefault(x => x.Id == id);
+            if (educationToRemove != null)
+            {
+                Educations.Remove(educationToRemove);
+            }
         }
         // Projects
         [ObservableProperty]
@@ -211,7 +219,11 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void RemoveProject(int id)
         {
-            Projects.Remove(Projects.FirstOrDefault(x => x.Id == id));
+            var projectToRemove = Projects.FirstOrDefault(x => x.Id == id);
+            if (projectToRemove != null)
+            {
+                Projects.Remove(projectToRemove);
+            }
         }
 
         // Skills
