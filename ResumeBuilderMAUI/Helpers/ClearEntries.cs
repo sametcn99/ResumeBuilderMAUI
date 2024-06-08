@@ -2,7 +2,7 @@
 
 namespace ResumeBuilderMAUI.Helpers
 {
-    class ClearEntriesHelper : MainViewModel
+    class ClearEntriesHelper
     {
         public static void ClearAllEntries(MainViewModel viewModel)
         {
