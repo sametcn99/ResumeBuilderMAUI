@@ -19,7 +19,7 @@ namespace ResumeBuilderMAUI.Helpers
             }
             catch (IOException ioEx)
             {
-                Application.Current.MainPage.DisplayAlert("Error", $"File operation error: {ioEx.Message}", "OK");
+                DisplayAlertHelpers.ShowAlert("Error", ioEx.Message);
                 return;
             }
 
@@ -56,7 +56,7 @@ namespace ResumeBuilderMAUI.Helpers
                             });
                     });
                 });
-                Application.Current.MainPage.DisplayAlert("Success", $"PDF Created Successfully\n {filePath}", "OK");
+                DisplayAlertHelpers.ShowAlert("Success", $"PDF Created Successfully\n {filePath}");
                 // open the PDF file
                 try
                 {
@@ -64,12 +64,12 @@ namespace ResumeBuilderMAUI.Helpers
                 }
                 catch (Exception ex)
                 {
-                    Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                    DisplayAlertHelpers.ShowAlert("Error", ex.Message);
                 }
             }
             catch (Exception ex)
             {
-                Application.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                DisplayAlertHelpers.ShowAlert("Error", ex.Message);
             }
         }
     }

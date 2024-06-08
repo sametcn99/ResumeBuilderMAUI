@@ -272,10 +272,10 @@ namespace ResumeBuilderMAUI.ViewModels
             CheckForErrors();
             if (Errors.Count > 0)
             {
-                Application.Current?.MainPage?.DisplayAlert("Errors", $"{Formatters.FormatJson(Errors)}", "OK");
+                DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
                 return;
             }
-            Application.Current?.MainPage?.DisplayAlert("Saved", $"{Formatters.FormatJson(Data)}", "OK");
+            DisplayAlertHelpers.ShowAlert("Saved", $"{Formatters.FormatJson(Data)}");
             ClearEntriesHelper.ClearAllEntries(this);
             CreateResume.CreateResumePDF();
         }
