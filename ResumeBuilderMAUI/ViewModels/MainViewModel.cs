@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
+using ResumeBuilderMAUI.Helpers;
 using ResumeBuilderMAUI.Models;
 using System.Collections.ObjectModel;
-using System.Text.Json;
 
 namespace ResumeBuilderMAUI.ViewModels
 {
@@ -167,6 +167,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 Educations.Remove(educationToRemove);
             }
         }
+
         // Projects
         [ObservableProperty]
         private string? projectTitle;
@@ -281,11 +282,56 @@ namespace ResumeBuilderMAUI.ViewModels
             SkillList.Clear();
         }
 
+        private ObservableCollection<string> Errors { get; set; } = new ObservableCollection<string>();
+
+        void CheckForErrors()
+        {
+            Errors.Clear();
+            if (string.IsNullOrWhiteSpace(FirstName))
+                Errors.Add("First Name is required");
+
+            if (string.IsNullOrWhiteSpace(LastName))
+                Errors.Add("Last Name is required");
+
+            if (!Validators.IsValidEmail(Email) || Email?.Length < 5)
+                Errors.Add("Invalid Email");
+
+            if (string.IsNullOrWhiteSpace(FirstName) || FirstName.Length < 3)
+                Errors.Add("First Name is required");
+
+            if (string.IsNullOrWhiteSpace(LastName) || LastName.Length < 3)
+                Errors.Add("Last Name is required");
+
+            if (string.IsNullOrWhiteSpace(Summary) || Summary.Length < 10)
+                Errors.Add("Summary is required");
+
+            if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length < 10)
+                Errors.Add("Phone Number is required");
+
+            if (Validators.IsValidUrl(Website))
+                Errors.Add("Invalid Website URL");
+
+            if (Validators.IsValidUrl(LinkedIn))
+                Errors.Add("Invalid LinkedIn URL");
+
+            if (Validators.IsValidUrl(GitHub))
+                Errors.Add("Invalid GitHub URL");
+        }
+
         [RelayCommand]
         void Save()
         {
-            Application.Current?.MainPage?.DisplayAlert("Saved", $"{JsonSerializer.Serialize(Data)}", "OK");
-            ClearEntries();
+            CheckForErrors();
+            if (Errors.Count > 0)
+            {
+                Application.Current?.MainPage?.DisplayAlert("Errors", $"{Formatters.FormatJson(Errors)}", "OK");
+                return;
+            }
+            else
+            {
+                Application.Current?.MainPage?.DisplayAlert("Saved", $"{Formatters.FormatJson(Data)}", "OK");
+                ClearEntries();
+            }
         }
     }
 }
