@@ -23,8 +23,9 @@ namespace ResumeBuilderMAUI.Helpers
 
         public static bool IsValidPhoneNumber(string phoneNumber)
         {
-            return System.Text.RegularExpressions.Regex.Match(phoneNumber, @"^(\+[0-9]{9})$").Success;
+            return System.Text.RegularExpressions.Regex.Match(phoneNumber, @"^\d+$").Success;
         }
+
 
         public static bool IsValidUrl(string? url)
         {

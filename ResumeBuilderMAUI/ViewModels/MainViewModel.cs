@@ -287,26 +287,15 @@ namespace ResumeBuilderMAUI.ViewModels
         void CheckForErrors()
         {
             Errors.Clear();
-            if (string.IsNullOrWhiteSpace(FirstName))
-                Errors.Add("First Name is required");
-
-            if (string.IsNullOrWhiteSpace(LastName))
-                Errors.Add("Last Name is required");
-
-            if (!Validators.IsValidEmail(Email) || Email?.Length < 5)
-                Errors.Add("Invalid Email");
-
+            FormatData();
             if (string.IsNullOrWhiteSpace(FirstName) || FirstName.Length < 3)
                 Errors.Add("First Name is required");
 
             if (string.IsNullOrWhiteSpace(LastName) || LastName.Length < 3)
                 Errors.Add("Last Name is required");
 
-            if (string.IsNullOrWhiteSpace(Summary) || Summary.Length < 10)
-                Errors.Add("Summary is required");
-
-            if (string.IsNullOrWhiteSpace(PhoneNumber) || PhoneNumber.Length < 10)
-                Errors.Add("Phone Number is required");
+            if (!Validators.IsValidEmail(Email) & Email?.Length > 5)
+                Errors.Add("Invalid Email");
 
             if (Validators.IsValidUrl(Website))
                 Errors.Add("Invalid Website URL");
@@ -318,6 +307,13 @@ namespace ResumeBuilderMAUI.ViewModels
                 Errors.Add("Invalid GitHub URL");
         }
 
+        void FormatData()
+        {
+            Website = Formatters.FormatUrl(Website);
+            LinkedIn = Formatters.FormatUrl(LinkedIn);
+            GitHub = Formatters.FormatUrl(GitHub);
+        }
+
         [RelayCommand]
         void Save()
         {
@@ -327,11 +323,8 @@ namespace ResumeBuilderMAUI.ViewModels
                 Application.Current?.MainPage?.DisplayAlert("Errors", $"{Formatters.FormatJson(Errors)}", "OK");
                 return;
             }
-            else
-            {
-                Application.Current?.MainPage?.DisplayAlert("Saved", $"{Formatters.FormatJson(Data)}", "OK");
-                ClearEntries();
-            }
+            Application.Current?.MainPage?.DisplayAlert("Saved", $"{Formatters.FormatJson(Data)}", "OK");
+            ClearEntries();
         }
     }
 }
