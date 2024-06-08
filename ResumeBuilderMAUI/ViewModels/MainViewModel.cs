@@ -277,6 +277,7 @@ namespace ResumeBuilderMAUI.ViewModels
             }
             Application.Current?.MainPage?.DisplayAlert("Saved", $"{Formatters.FormatJson(Data)}", "OK");
             ClearEntriesHelper.ClearAllEntries(this);
+            CreateResume.CreateResumePDF();
         }
     }
 }
