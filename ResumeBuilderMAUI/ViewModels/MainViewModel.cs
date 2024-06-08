@@ -9,6 +9,13 @@ namespace ResumeBuilderMAUI.ViewModels
 {
     public partial class MainViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
+#if DEBUG
+        public MainViewModel()
+        {
+            FillEntriesInDebug.FillEntries(this);
+        }
+#endif
+
         // Personal Information
         [ObservableProperty]
         private string? firstName;
@@ -279,5 +286,7 @@ namespace ResumeBuilderMAUI.ViewModels
             ClearEntriesHelper.ClearAllEntries(this);
             CreateResume.CreateResumePDF(this);
         }
+
+
     }
 }

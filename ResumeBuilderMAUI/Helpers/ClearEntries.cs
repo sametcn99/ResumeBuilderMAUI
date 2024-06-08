@@ -17,6 +17,10 @@ namespace ResumeBuilderMAUI.Helpers
             viewModel.Languages = string.Empty;
             viewModel.LinkedIn = string.Empty;
             viewModel.GitHub = string.Empty;
+            viewModel.Skill = string.Empty;
+            ClearProjectEntries(viewModel);
+            ClearEducationEntries(viewModel);
+            ClearExperienceEntries(viewModel);
             viewModel.Educations.Clear();
             viewModel.Experiences.Clear();
             viewModel.Projects.Clear();

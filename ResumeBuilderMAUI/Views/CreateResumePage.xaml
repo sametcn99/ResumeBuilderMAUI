@@ -31,7 +31,8 @@
                        Grid.Column="1"
                        Text="{Binding LastName}" />
             </Grid>
-            <Entry Placeholder="Summary"
+            <Editor Placeholder="Summary"
+                    MinimumHeightRequest="150"
                    Text="{Binding Summary}" />
             <Entry Placeholder="Email"
                    Text="{Binding Email}" />
