@@ -13,18 +13,15 @@
             <Label Text="Resume Builder"
                    FontSize="Title"
                    FontAttributes="Bold"
-                   HorizontalOptions="Center"
-                   TextColor="#3498db" />
+                   HorizontalOptions="Center" />
             <Label Text="Create your resume in minutes"
                    FontSize="Medium"
-                   HorizontalOptions="Center"
-                   TextColor="#38628C" />
+                   HorizontalOptions="Center" />
 
             <!--Personal Information Section-->
             <Label Text="Personal Information"
                    FontSize="Title"
-                   FontAttributes="Bold"
-                   TextColor="#2980b9" />
+                   FontAttributes="Bold" />
             <Grid ColumnDefinitions="*,*"
                   ColumnSpacing="10">
                 <Entry Placeholder="First Name"
@@ -57,24 +54,20 @@
             <!--Education Section-->
             <Label Text="Education"
                    FontSize="Title"
-                   FontAttributes="Bold"
-                   TextColor="#2980b9" />
+                   FontAttributes="Bold" />
             <ListView ItemsSource="{Binding Educations}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:EducationModel">
                         <ViewCell>
-                            <Frame BackgroundColor="#ecf0f1"
-                                   CornerRadius="10"
+                            <Frame CornerRadius="10"
                                    Padding="10"
                                    Margin="5">
                                 <StackLayout MaximumWidthRequest="500">
                                     <Label Text="{Binding School}"
                                            FontSize="Title"
-                                           TextColor="#2c3e50"
                                            Margin="0,0,0,5" />
                                     <Label Text="{Binding Degree}"
                                            FontSize="Default"
-                                           TextColor="#7f8c8d"
                                            Margin="0,0,0,10" />
                                     <Grid>
                                         <Grid.RowDefinitions>
@@ -85,27 +78,21 @@
                                         <StackLayout Orientation="Horizontal"
                                                      Grid.Row="0">
                                             <Label Text="{Binding Grade}"
-                                                   FontSize="Default"
-                                                   TextColor="#7f8c8d" />
+                                                   FontSize="Default" />
                                             <Label Text="{Binding StartDate}"
                                                    FontSize="Default"
-                                                   TextColor="#7f8c8d"
                                                    Margin="10,0,0,0" />
                                             <Label Text="{Binding EndDate}"
                                                    FontSize="Default"
-                                                   TextColor="#7f8c8d"
                                                    Margin="10,0,0,0" />
                                         </StackLayout>
                                         <Label Text="{Binding Description}"
                                                FontSize="Caption"
-                                               TextColor="#7f8c8d"
                                                Grid.Row="1"
                                                Margin="0,10,0,10" />
                                         <Button Text="Remove"
                                                 Command="{Binding BindingContext.RemoveEducationCommand, Source={x:Reference Layout}}"
                                                 CommandParameter="{Binding Id}"
-                                                BackgroundColor="#e74c3c"
-                                                TextColor="White"
                                                 HorizontalOptions="End"
                                                 Grid.Row="2" />
                                     </Grid>
@@ -113,7 +100,6 @@
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
-
                 </ListView.ItemTemplate>
             </ListView>
             <Grid ColumnDefinitions="*,*,*"
@@ -141,27 +127,23 @@
                     Placeholder="Experience Detail"
                     Text="{Binding EducationDescription}" />
             <Button Text="Add Education"
-                    Command="{Binding AddEducationCommand}"
-                    BackgroundColor="#27ae60"
-                    TextColor="White" />
+                    Command="{Binding AddEducationCommand}" />
 
             <!--Experience Section-->
             <Label Text="Experience"
                    FontSize="Title"
                    FontAttributes="Bold"
-                   TextColor="#2980b9" />
+                 />
             <ListView ItemsSource="{Binding Experiences}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:ExperienceModel">
                         <ViewCell>
-                            <Frame BackgroundColor="#ecf0f1"
-                                   CornerRadius="10"
+                            <Frame CornerRadius="10"
                                    Padding="10"
                                    Margin="5">
                                 <StackLayout MaximumWidthRequest="500">
                                     <Label Text="{Binding Title}"
                                            FontSize="Title"
-                                           TextColor="#2c3e50"
                                            Margin="0,0,0,10" />
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -171,11 +153,9 @@
                                         </Grid.ColumnDefinitions>
                                         <Label Text="{Binding Company}"
                                                FontSize="Default"
-                                               TextColor="#7f8c8d"
                                                Grid.Column="0" />
                                         <Label Text="{Binding Position}"
                                                FontSize="Default"
-                                               TextColor="#7f8c8d"
                                                Grid.Column="1"
                                                Margin="10,0,0,0" />
                                         <StackLayout Orientation="Horizontal"
@@ -183,28 +163,23 @@
                                                      Margin="10,0,0,0">
                                             <Label Text="{Binding StartDate}"
                                                    FontSize="Default"
-                                                   TextColor="#7f8c8d" />
+                                                 />
                                             <Label Text="{Binding EndDate}"
                                                    FontSize="Default"
-                                                   TextColor="#7f8c8d"
                                                    Margin="5,0,0,0" />
                                         </StackLayout>
                                     </Grid>
                                     <Label Text="{Binding Description}"
                                            FontSize="Caption"
-                                           TextColor="#7f8c8d"
                                            Margin="0,10,0,10" />
                                     <Button Text="Remove"
                                             Command="{Binding BindingContext.RemoveExperienceCommand, Source={x:Reference Layout}}"
                                             CommandParameter="{Binding Id}"
-                                            BackgroundColor="#e74c3c"
-                                            TextColor="White"
                                             HorizontalOptions="End" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
-
                 </ListView.ItemTemplate>
             </ListView>
             <Grid ColumnDefinitions="*,*,*"
@@ -232,27 +207,22 @@
                        Grid.Column="1" />
             </Grid>
             <Button Text="Add Experience"
-                    Command="{Binding AddExperienceCommand}"
-                    BackgroundColor="#27ae60"
-                    TextColor="White" />
+                    Command="{Binding AddExperienceCommand}" />
 
             <!--Project Section-->
             <Label Text="Projects"
                    FontSize="Title"
-                   FontAttributes="Bold"
-                   TextColor="#2980b9" />
+                   FontAttributes="Bold" />
             <ListView ItemsSource="{Binding Projects}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:ProjectModel">
                         <ViewCell>
-                            <Frame BackgroundColor="#ecf0f1"
-                                   CornerRadius="10"
+                            <Frame CornerRadius="10"
                                    Padding="10"
                                    Margin="5">
                                 <StackLayout>
                                     <Label Text="{Binding Title}"
                                            FontSize="Title"
-                                           TextColor="#2c3e50"
                                            Margin="0,0,0,10" />
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -263,39 +233,31 @@
                                         </Grid.ColumnDefinitions>
                                         <Label Text="{Binding Link}"
                                                FontSize="Default"
-                                               TextColor="#7f8c8d"
                                                Grid.Column="0" />
                                         <Label Text="{Binding StartDate}"
                                                FontSize="Default"
-                                               TextColor="#7f8c8d"
                                                Grid.Column="1"
                                                Margin="10,0,0,0" />
                                         <Label Text="{Binding EndDate}"
                                                FontSize="Default"
-                                               TextColor="#7f8c8d"
                                                Grid.Column="2"
                                                Margin="10,0,0,0" />
                                         <Label Text="{Binding Status}"
                                                FontSize="Default"
-                                               TextColor="#7f8c8d"
                                                Grid.Column="3"
                                                Margin="10,0,0,0" />
                                     </Grid>
                                     <Label Text="{Binding Description}"
                                            FontSize="Caption"
-                                           TextColor="#7f8c8d"
                                            Margin="0,10,0,10" />
                                     <Button Text="Remove"
                                             Command="{Binding BindingContext.RemoveProjectCommand, Source={x:Reference Layout}}"
                                             CommandParameter="{Binding Id}"
-                                            BackgroundColor="#e74c3c"
-                                            TextColor="White"
                                             HorizontalOptions="End" />
                                 </StackLayout>
                             </Frame>
                         </ViewCell>
                     </DataTemplate>
-
                 </ListView.ItemTemplate>
             </ListView>
             <Grid ColumnDefinitions="*,*"
@@ -325,32 +287,25 @@
                     MinimumHeightRequest="150"
                     Text="{Binding ProjectDescription}" />
             <Button Text="Add Project"
-                    Command="{Binding AddProjectCommand}"
-                    BackgroundColor="#27ae60"
-                    TextColor="White" />
+                    Command="{Binding AddProjectCommand}" />
 
             <!--Skill Section-->
             <Label Text="Skills"
                    FontSize="Title"
-                   FontAttributes="Bold"
-                   TextColor="#2980b9" />
+                   FontAttributes="Bold" />
             <VerticalStackLayout Spacing="10">
                 <CollectionView ItemsSource="{Binding SkillList}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Frame BackgroundColor="#ecf0f1"
-                                   CornerRadius="10"
+                            <Frame CornerRadius="10"
                                    Padding="10"
                                    Margin="5">
                                 <FlexLayout JustifyContent="SpaceBetween">
                                     <Label Text="{Binding .}"
-                                           FontSize="Small"
-                                           TextColor="#2c3e50" />
+                                           FontSize="Small" />
                                     <Button Text="Remove"
                                             Command="{Binding BindingContext.RemoveSkillCommand, Source={x:Reference Layout}}"
-                                            CommandParameter="{Binding .}"
-                                            BackgroundColor="#e74c3c"
-                                            TextColor="White" />
+                                            CommandParameter="{Binding .}" />
                                 </FlexLayout>
                             </Frame>
                         </DataTemplate>
@@ -360,17 +315,13 @@
                        Placeholder="Add Skill"
                        Text="{Binding Skill}" />
                 <Button Text="Add Skill"
-                        Command="{Binding AddSkillCommand}"
-                        BackgroundColor="#27ae60"
-                        TextColor="White" />
+                        Command="{Binding AddSkillCommand}" />
             </VerticalStackLayout>
 
             <!--Save Button-->
             <Button Text="Save"
                     Command="{Binding SaveCommand}"
                     HorizontalOptions="Center"
-                    BackgroundColor="#3498db"
-                    TextColor="White"
                     WidthRequest="200"
                     CornerRadius="20" />
         </VerticalStackLayout>
