@@ -72,21 +72,11 @@ namespace ResumeBuilderMAUI.ViewModels
         public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = [];
 
 
-        void ClearExperienceEntries()
-        {
-            ExperienceTitle = string.Empty;
-            ExperienceCompany = string.Empty;
-            ExperienceDescription = string.Empty;
-            ExperiencePosition = string.Empty;
-            ExperienceStartDate = string.Empty;
-            ExperienceEndDate = string.Empty;
-        }
 
         [RelayCommand]
         void AddExperience()
         {
-            if (string.IsNullOrWhiteSpace(ExperienceTitle))
-                return;
+            if (string.IsNullOrWhiteSpace(ExperienceTitle)) return;
             var experienceData = new ExperienceModel
             {
                 Id = Experiences.Count + 1,
@@ -98,7 +88,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 EndDate = ExperienceEndDate,
             };
             Experiences.Add(experienceData);
-            ClearExperienceEntries();
+            ClearEntriesHelper.ClearExperienceEntries(this);
         }
 
         [RelayCommand]
@@ -106,9 +96,7 @@ namespace ResumeBuilderMAUI.ViewModels
         {
             var experienceToRemove = Experiences.FirstOrDefault(x => x.Id == id);
             if (experienceToRemove != null)
-            {
                 Experiences.Remove(experienceToRemove);
-            }
         }
 
         // Education
@@ -133,21 +121,11 @@ namespace ResumeBuilderMAUI.ViewModels
 
         public ObservableRangeCollection<EducationModel> Educations { get; set; } = [];
 
-        void ClearEducationEntries()
-        {
-            EducationSchool = string.Empty;
-            EducationDegree = string.Empty;
-            EducationStartDate = string.Empty;
-            EducationEndDate = string.Empty;
-            EducationGrade = string.Empty;
-            EducationDescription = string.Empty;
-        }
 
         [RelayCommand]
         void AddEducation()
         {
-            if (string.IsNullOrWhiteSpace(EducationSchool))
-                return;
+            if (string.IsNullOrWhiteSpace(EducationSchool)) return;
 
             var educationData = new EducationModel
             {
@@ -160,7 +138,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 Description = EducationDescription,
             };
             Educations.Add(educationData);
-            ClearEducationEntries();
+            ClearEntriesHelper.ClearEducationEntries(this);
         }
 
         [RelayCommand]
@@ -168,9 +146,7 @@ namespace ResumeBuilderMAUI.ViewModels
         {
             var educationToRemove = Educations.FirstOrDefault(x => x.Id == id);
             if (educationToRemove != null)
-            {
                 Educations.Remove(educationToRemove);
-            }
         }
 
         // Projects
@@ -192,22 +168,12 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         private string? projectLink;
 
-        void ClearProjectEntries()
-        {
-            ProjectTitle = string.Empty;
-            ProjectDescription = string.Empty;
-            ProjectStartDate = string.Empty;
-            ProjectEndDate = string.Empty;
-            ProjectStatus = string.Empty;
-            ProjectLink = string.Empty;
-        }
-
         public ObservableRangeCollection<ProjectModel> Projects { get; set; } = [];
+
         [RelayCommand]
         void AddProject()
         {
-            if (string.IsNullOrWhiteSpace(ProjectTitle))
-                return;
+            if (string.IsNullOrWhiteSpace(ProjectTitle)) return;
 
             var projectData = new ProjectModel
             {
@@ -220,7 +186,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 Link = ProjectLink,
             };
             Projects.Add(projectData);
-            ClearProjectEntries();
+            ClearEntriesHelper.ClearProjectEntries(this);
         }
 
         [RelayCommand]
@@ -238,22 +204,16 @@ namespace ResumeBuilderMAUI.ViewModels
         [NotifyPropertyChangedFor(nameof(Data))]
         private ObservableCollection<string> skillList = [];
 
-
         [RelayCommand]
         void AddSkill()
         {
-            if (string.IsNullOrWhiteSpace(Skill))
-                return;
-
+            if (string.IsNullOrWhiteSpace(Skill)) return;
             SkillList.Add(Skill);
             Skill = string.Empty;
         }
 
         [RelayCommand]
-        void RemoveSkill(string skill)
-        {
-            SkillList.Remove(skill);
-        }
+        void RemoveSkill(string skill) => SkillList.Remove(skill);
 
         public object Data => new
         {
@@ -273,26 +233,6 @@ namespace ResumeBuilderMAUI.ViewModels
             Experiences,
             Projects
         };
-
-        [RelayCommand]
-        void ClearEntries()
-        {
-            FirstName = string.Empty;
-            LastName = string.Empty;
-            Summary = string.Empty;
-            PhoneNumber = string.Empty;
-            Email = string.Empty;
-            Website = string.Empty;
-            Address = string.Empty;
-            Certifications = string.Empty;
-            Languages = string.Empty;
-            LinkedIn = string.Empty;
-            GitHub = string.Empty;
-            Educations.Clear();
-            Experiences.Clear();
-            Projects.Clear();
-            SkillList.Clear();
-        }
 
         private ObservableCollection<string> Errors { get; set; } = [];
 
@@ -336,7 +276,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 return;
             }
             Application.Current?.MainPage?.DisplayAlert("Saved", $"{Formatters.FormatJson(Data)}", "OK");
-            ClearEntries();
+            ClearEntriesHelper.ClearAllEntries(this);
         }
     }
 }

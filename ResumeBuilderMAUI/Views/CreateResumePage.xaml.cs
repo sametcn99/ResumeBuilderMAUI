@@ -1,3 +1,4 @@
+using ResumeBuilderMAUI.Helpers;
 using ResumeBuilderMAUI.ViewModels;
 
 namespace ResumeBuilderMAUI.Views;
@@ -19,9 +20,8 @@ public partial class CreateResumePage : ContentPage
                 if (result)
                 {
                     await Navigation.PopAsync();
-                    (BindingContext as MainViewModel)?.ClearEntriesCommand.Execute(null);
+                    ClearEntriesHelper.ClearAllEntries(BindingContext as MainViewModel);
                 }
-
             });
         }
         else
