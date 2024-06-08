@@ -69,7 +69,7 @@ namespace ResumeBuilderMAUI.ViewModels
         //[NotifyPropertyChangedFor(nameof(Data))]
         //private ObservableCollection<ExperienceModel> experiences = new ObservableCollection<ExperienceModel>();
 
-        public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = new ObservableRangeCollection<ExperienceModel>();
+        public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = [];
 
 
         void ClearExperienceEntries()
@@ -131,7 +131,7 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         private string? educationGrade;
 
-        public ObservableRangeCollection<EducationModel> Educations { get; set; } = new ObservableRangeCollection<EducationModel>();
+        public ObservableRangeCollection<EducationModel> Educations { get; set; } = [];
 
         void ClearEducationEntries()
         {
@@ -202,7 +202,7 @@ namespace ResumeBuilderMAUI.ViewModels
             ProjectLink = string.Empty;
         }
 
-        public ObservableRangeCollection<ProjectModel> Projects { get; set; } = new ObservableRangeCollection<ProjectModel>();
+        public ObservableRangeCollection<ProjectModel> Projects { get; set; } = [];
         [RelayCommand]
         void AddProject()
         {
@@ -236,7 +236,7 @@ namespace ResumeBuilderMAUI.ViewModels
         // Skills
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(Data))]
-        private ObservableCollection<string> skillList = new ObservableCollection<string> { };
+        private ObservableCollection<string> skillList = [];
 
 
         [RelayCommand]
@@ -269,6 +269,7 @@ namespace ResumeBuilderMAUI.ViewModels
             Languages,
             LinkedIn,
             GitHub,
+            Educations,
             Experiences,
             Projects
         };
@@ -287,12 +288,13 @@ namespace ResumeBuilderMAUI.ViewModels
             Languages = string.Empty;
             LinkedIn = string.Empty;
             GitHub = string.Empty;
+            Educations.Clear();
             Experiences.Clear();
             Projects.Clear();
             SkillList.Clear();
         }
 
-        private ObservableCollection<string> Errors { get; set; } = new ObservableCollection<string>();
+        private ObservableCollection<string> Errors { get; set; } = [];
 
         void CheckForErrors()
         {
