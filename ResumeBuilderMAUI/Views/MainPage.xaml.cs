@@ -13,7 +13,7 @@ namespace ResumeBuilderMAUI.Views
         }
         async void OnCreateResumeClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreateResumePage(BindingContext as MainViewModel));
+            await Navigation.PushAsync(new CreateResumePage(vm: (MainViewModel)BindingContext!));
         }
         void OnViewSourceCodeClicked(object sender, EventArgs e)
         {

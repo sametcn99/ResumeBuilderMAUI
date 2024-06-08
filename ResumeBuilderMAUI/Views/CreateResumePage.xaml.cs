@@ -20,7 +20,7 @@ public partial class CreateResumePage : ContentPage
                 if (result)
                 {
                     await Navigation.PopAsync();
-                    ClearEntriesHelper.ClearAllEntries(BindingContext as MainViewModel);
+                    ClearEntriesHelper.ClearAllEntries(viewModel: (MainViewModel)BindingContext);
                 }
             });
         }
