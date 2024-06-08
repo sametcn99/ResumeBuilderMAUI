@@ -85,6 +85,8 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void AddExperience()
         {
+            if (string.IsNullOrWhiteSpace(ExperienceTitle))
+                return;
             var experienceData = new ExperienceModel
             {
                 Id = Experiences.Count + 1,
@@ -144,6 +146,9 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void AddEducation()
         {
+            if (string.IsNullOrWhiteSpace(EducationSchool))
+                return;
+
             var educationData = new EducationModel
             {
                 Id = Educations.Count + 1,
@@ -201,6 +206,9 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void AddProject()
         {
+            if (string.IsNullOrWhiteSpace(ProjectTitle))
+                return;
+
             var projectData = new ProjectModel
             {
                 Id = Projects.Count + 1,
@@ -234,8 +242,10 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         void AddSkill()
         {
-            if (!string.IsNullOrWhiteSpace(Skill))
-                SkillList.Add(Skill);
+            if (string.IsNullOrWhiteSpace(Skill))
+                return;
+
+            SkillList.Add(Skill);
             Skill = string.Empty;
         }
 
