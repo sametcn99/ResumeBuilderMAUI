@@ -89,18 +89,6 @@ namespace ResumeBuilderMAUI.ViewModels
                 StartDate = ExperienceStartDate,
                 EndDate = ExperienceEndDate,
             };
-
-            var experience = new Experience
-            {
-                ResumeId = 1,
-                Id = experienceData.Id,
-                Company = experienceData.Company,
-                Position = experienceData.Position,
-                StartDate = experienceData.StartDate,
-                EndDate = experienceData.EndDate,
-                Description = experienceData.Description,
-            };
-
             Experiences.Add(experienceData);
             ClearEntriesHelper.ClearExperienceEntries(this);
         }
@@ -276,12 +264,12 @@ namespace ResumeBuilderMAUI.ViewModels
             try
             {
                 CheckForErrors();
-
                 if (Errors.Count > 0)
                 {
                     DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
                     return;
                 }
+
                 int ResumeId = Generators.RandomNumber();
 
                 await LocalDbService.AddPerson(new Person
