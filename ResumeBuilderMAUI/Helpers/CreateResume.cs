@@ -7,7 +7,7 @@ namespace ResumeBuilderMAUI.Helpers
     {
         public static void CreateResumePDF(MainViewModel mainViewModel)
         {
-            string filePath = Path.Combine(FileSystem.Current.AppDataDirectory, $"{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
+            string filePath = Path.Combine(FileSystem.Current.CacheDirectory, $"{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
 
             try
             {

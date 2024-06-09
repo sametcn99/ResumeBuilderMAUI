@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using MvvmHelpers;
 using ResumeBuilderMAUI.Helpers;
 using ResumeBuilderMAUI.Models;
+using ResumeBuilderMAUI.Services;
 using System.Collections.ObjectModel;
 
 namespace ResumeBuilderMAUI.ViewModels
@@ -235,6 +236,7 @@ namespace ResumeBuilderMAUI.ViewModels
 
         public object Data => new
         {
+            Id = 1,
             FirstName,
             LastName,
             Summary,
@@ -251,6 +253,23 @@ namespace ResumeBuilderMAUI.ViewModels
             Experiences,
             Projects
         };
+
+        public object ResumeData => new Resume
+        {
+            Id = 1,
+            FirstName = FirstName,
+            LastName = LastName,
+            Summary = Summary,
+            PhoneNumber = PhoneNumber,
+            Email = Email,
+            Website = Website,
+            Address = Address,
+            Languages = Languages,
+            LinkedIn = LinkedIn,
+            GitHub = GitHub,
+
+        };
+
 
         private ObservableCollection<string> Errors { get; set; } = [];
 
@@ -285,7 +304,7 @@ namespace ResumeBuilderMAUI.ViewModels
         }
 
         [RelayCommand]
-        void Save()
+        async Task Save()
         {
             CheckForErrors();
             if (Errors.Count > 0)
@@ -293,6 +312,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
                 return;
             }
+            await LocalDbService.AddResume((Resume)ResumeData);
             CreateResume.CreateResumePDF(this);
             DisplayAlertHelpers.ShowAlert("Saved", $"{Formatters.FormatJson(Data)}");
             ClearEntriesHelper.ClearAllEntries(this);
