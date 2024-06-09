@@ -1,8 +1,9 @@
 ﻿namespace ResumeBuilderMAUI.Models
 {
-    public class Resume
+
+    public class Person
     {
-        public int? Id { get; set; }
+        public int ResumeId { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Summary { get; set; }
@@ -11,10 +12,55 @@
         public string? Website { get; set; }
         public string? LinkedIn { get; set; }
         public string? GitHub { get; set; }
-        public string? Certification { get; set; }
         public string? Languages { get; set; }
         public string? Address { get; set; }
-        public string? Skill { get; set; }
+    }
 
+    public class Certification
+    {
+        public int ResumeId { get; set; }
+        public int Id { get; set; }
+        public string? Name { get; set; }
+    }
+
+    public class Education
+    {
+        public int ResumeId { get; set; }
+        public int Id { get; set; }
+        public string? School { get; set; }
+        public string? Degree { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+        public string? Description { get; set; }
+    }
+
+    public class Experience
+    {
+        public int ResumeId { get; set; }
+        public int Id { get; set; }
+        public string? Company { get; set; }
+        public string? Position { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+        public string? Description { get; set; }
+    }
+
+    public class Project
+    {
+        public int ResumeId { get; set; }
+        public int Id { get; set; }
+        public string? Title { get; set; }
+        public string? Description { get; set; }
+        public string? StartDate { get; set; }
+        public string? EndDate { get; set; }
+        public string? Status { get; set; }
+        public string? Link { get; set; }
+    }
+
+    public class Skill
+    {
+        public int ResumeId { get; set; }
+        public int Id { get; set; }
+        public string? Name { get; set; }
     }
 }

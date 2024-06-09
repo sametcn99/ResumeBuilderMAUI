@@ -10,13 +10,19 @@ namespace ResumeBuilderMAUI.Services
 
         static async Task<SQLiteAsyncConnection> Inıt()
         {
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "local_resume_db.db");
             try
             {
                 if (db != null)
                     return db;
-                string dbPath = Path.Combine(FileSystem.AppDataDirectory, "app_db_local.db");
                 db = new SQLiteAsyncConnection(dbPath);
-                await db.CreateTableAsync<Resume>();
+                await db.CreateTableAsync<Person>();
+                await db.CreateTableAsync<Certification>();
+                await db.CreateTableAsync<Education>();
+                await db.CreateTableAsync<Experience>();
+                await db.CreateTableAsync<Project>();
+                await db.CreateTableAsync<Skill>();
+
                 return db;
             }
             catch (Exception ex)
@@ -26,10 +32,47 @@ namespace ResumeBuilderMAUI.Services
             }
         }
 
-        public static async Task AddResume(Resume resume)
+        public static async Task AddPerson(Person resume)
         {
             await Inıt();
             await db.InsertAsync(resume);
+        }
+
+        public static async Task AddCertification(Certification certification)
+        {
+            await Inıt();
+            await db.InsertAsync(certification);
+        }
+
+        public static async Task AddEducation(Education education)
+        {
+            await Inıt();
+            await db.InsertAsync(education);
+        }
+
+        public static async Task AddExperience(Experience experience)
+        {
+            try
+            {
+                await Inıt();
+                await db.InsertAsync(experience);
+            }
+            catch (Exception ex)
+            {
+                DisplayAlertHelpers.ShowAlert("Error", ex.Message);
+            }
+        }
+
+        public static async Task AddProject(Project project)
+        {
+            await Inıt();
+            await db.InsertAsync(project);
+        }
+
+        public static async Task AddSkill(Skill skill)
+        {
+            await Inıt();
+            await db.InsertAsync(skill);
         }
 
     }

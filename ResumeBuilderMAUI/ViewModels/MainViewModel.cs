@@ -73,13 +73,7 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         private string? experienceCompany;
 
-        //[ObservableProperty]
-        //[NotifyPropertyChangedFor(nameof(Data))]
-        //private ObservableCollection<ExperienceModel> experiences = new ObservableCollection<ExperienceModel>();
-
         public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = [];
-
-
 
         [RelayCommand]
         void AddExperience()
@@ -95,6 +89,18 @@ namespace ResumeBuilderMAUI.ViewModels
                 StartDate = ExperienceStartDate,
                 EndDate = ExperienceEndDate,
             };
+
+            var experience = new Experience
+            {
+                ResumeId = 1,
+                Id = experienceData.Id,
+                Company = experienceData.Company,
+                Position = experienceData.Position,
+                StartDate = experienceData.StartDate,
+                EndDate = experienceData.EndDate,
+                Description = experienceData.Description,
+            };
+
             Experiences.Add(experienceData);
             ClearEntriesHelper.ClearExperienceEntries(this);
         }
@@ -128,7 +134,6 @@ namespace ResumeBuilderMAUI.ViewModels
         private string? educationGrade;
 
         public ObservableRangeCollection<EducationModel> Educations { get; set; } = [];
-
 
         [RelayCommand]
         void AddEducation()
@@ -220,7 +225,6 @@ namespace ResumeBuilderMAUI.ViewModels
 
         // Skills
         [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(Data))]
         private ObservableCollection<string> skillList = [];
 
         [RelayCommand]
@@ -233,43 +237,6 @@ namespace ResumeBuilderMAUI.ViewModels
 
         [RelayCommand]
         void RemoveSkill(string skill) => SkillList.Remove(skill);
-
-        public object Data => new
-        {
-            Id = 1,
-            FirstName,
-            LastName,
-            Summary,
-            PhoneNumber,
-            SkillList,
-            Email,
-            Website,
-            Address,
-            Certifications,
-            Languages,
-            LinkedIn,
-            GitHub,
-            Educations,
-            Experiences,
-            Projects
-        };
-
-        public object ResumeData => new Resume
-        {
-            Id = 1,
-            FirstName = FirstName,
-            LastName = LastName,
-            Summary = Summary,
-            PhoneNumber = PhoneNumber,
-            Email = Email,
-            Website = Website,
-            Address = Address,
-            Languages = Languages,
-            LinkedIn = LinkedIn,
-            GitHub = GitHub,
-
-        };
-
 
         private ObservableCollection<string> Errors { get; set; } = [];
 
@@ -306,18 +273,124 @@ namespace ResumeBuilderMAUI.ViewModels
         [RelayCommand]
         async Task Save()
         {
-            CheckForErrors();
-            if (Errors.Count > 0)
+            try
             {
-                DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
-                return;
+                CheckForErrors();
+
+                if (Errors.Count > 0)
+                {
+                    DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
+                    return;
+                }
+                int ResumeId = Generators.RandomNumber();
+
+                await LocalDbService.AddPerson(new Person
+                {
+                    ResumeId = ResumeId,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Summary = Summary,
+                    PhoneNumber = PhoneNumber,
+                    Email = Email,
+                    Website = Website,
+                    Address = Address,
+                    Languages = Languages,
+                    LinkedIn = LinkedIn,
+                    GitHub = GitHub,
+                });
+
+                for (int i = 0; i < this.Certifications.Count; i++)
+                {
+                    await LocalDbService.AddCertification(new Certification
+                    {
+                        ResumeId = ResumeId,
+                        Id = i,
+                        Name = this.Certifications[i]
+                    });
+                }
+
+                for (int i = 0; i < this.Educations.Count; i++)
+                {
+                    var education = this.Educations[i];
+                    await LocalDbService.AddEducation(new Education
+                    {
+                        ResumeId = ResumeId,
+                        Id = education.Id ?? i + 1,
+                        School = education.School,
+                        Degree = education.Degree,
+                        StartDate = education.StartDate,
+                        EndDate = education.EndDate,
+                        Description = education.Description
+                    });
+                }
+
+                for (int i = 0; i < this.Experiences.Count; i++)
+                {
+                    var experience = this.Experiences[i];
+                    await LocalDbService.AddExperience(new Experience
+                    {
+                        ResumeId = ResumeId,
+                        Id = experience.Id,
+                        Company = experience.Company,
+                        Position = experience.Position,
+                        StartDate = experience.StartDate,
+                        EndDate = experience.EndDate,
+                        Description = experience.Description
+                    });
+                }
+
+                for (int i = 0; i < this.Projects.Count; i++)
+                {
+                    var project = this.Projects[i];
+                    await LocalDbService.AddProject(new Project
+                    {
+                        ResumeId = ResumeId,
+                        Id = i,
+                        Title = project.Title,
+                        Description = project.Description,
+                        StartDate = project.StartDate,
+                        EndDate = project.EndDate,
+                        Status = project.Status,
+                        Link = project.Link
+                    });
+                }
+
+                for (int i = 0; i < this.SkillList.Count; i++)
+                {
+                    var skill = this.SkillList[i];
+                    await LocalDbService.AddSkill(new Skill
+                    {
+                        Id = i,
+                        ResumeId = ResumeId,
+                        Name = skill
+                    });
+                }
+                CreateResume.CreateResumePDF(this);
+                DisplayAlertHelpers.ShowAlert("Saved", $"{Formatters.FormatJson(new
+                {
+                    Id = 1,
+                    FirstName,
+                    LastName,
+                    Summary,
+                    PhoneNumber,
+                    SkillList,
+                    Email,
+                    Website,
+                    Address,
+                    Certifications,
+                    Languages,
+                    LinkedIn,
+                    GitHub,
+                    Educations,
+                    Experiences,
+                    Projects
+                })}");
+                ClearEntriesHelper.ClearAllEntries(this);
             }
-            await LocalDbService.AddResume((Resume)ResumeData);
-            CreateResume.CreateResumePDF(this);
-            DisplayAlertHelpers.ShowAlert("Saved", $"{Formatters.FormatJson(Data)}");
-            ClearEntriesHelper.ClearAllEntries(this);
+            catch (Exception ex)
+            {
+                DisplayAlertHelpers.ShowAlert("Error", ex.Message);
+            }
         }
-
-
     }
 }
