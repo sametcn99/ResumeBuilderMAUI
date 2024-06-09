@@ -13,19 +13,21 @@ namespace ResumeBuilderMAUI.Helpers
             viewModel.Email = string.Empty;
             viewModel.Website = string.Empty;
             viewModel.Address = string.Empty;
-            viewModel.Certifications = string.Empty;
             viewModel.Languages = string.Empty;
             viewModel.LinkedIn = string.Empty;
             viewModel.GitHub = string.Empty;
+            viewModel.SkillList.Clear();
             viewModel.Skill = string.Empty;
-            ClearProjectEntries(viewModel);
-            ClearEducationEntries(viewModel);
-            ClearExperienceEntries(viewModel);
+            viewModel.Certifications.Clear();
+            viewModel.Certification = string.Empty;
             viewModel.Educations.Clear();
             viewModel.Experiences.Clear();
             viewModel.Projects.Clear();
-            viewModel.SkillList.Clear();
+            ClearProjectEntries(viewModel);
+            ClearEducationEntries(viewModel);
+            ClearExperienceEntries(viewModel);
         }
+
 
         public static void ClearProjectEntries(MainViewModel viewModel)
         {
@@ -33,7 +35,6 @@ namespace ResumeBuilderMAUI.Helpers
             viewModel.ProjectDescription = string.Empty;
             viewModel.ProjectStartDate = string.Empty;
             viewModel.ProjectEndDate = string.Empty;
-            viewModel.ProjectStatus = string.Empty;
             viewModel.ProjectLink = string.Empty;
         }
 

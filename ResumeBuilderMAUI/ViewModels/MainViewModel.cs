@@ -42,7 +42,7 @@ namespace ResumeBuilderMAUI.ViewModels
         private string? gitHub;
 
         [ObservableProperty]
-        private string? certifications;
+        private string? certification;
 
         [ObservableProperty]
         private string? languages;
@@ -170,9 +170,6 @@ namespace ResumeBuilderMAUI.ViewModels
         private string? projectEndDate;
 
         [ObservableProperty]
-        private string? projectStatus;
-
-        [ObservableProperty]
         private string? projectLink;
 
         public ObservableRangeCollection<ProjectModel> Projects { get; set; } = [];
@@ -189,7 +186,6 @@ namespace ResumeBuilderMAUI.ViewModels
                 Description = ProjectDescription,
                 StartDate = ProjectStartDate,
                 EndDate = ProjectEndDate,
-                Status = ProjectStatus,
                 Link = ProjectLink,
             };
             Projects.Add(projectData);
@@ -205,6 +201,21 @@ namespace ResumeBuilderMAUI.ViewModels
                 Projects.Remove(projectToRemove);
             }
         }
+
+        // Certifications
+        [ObservableProperty]
+        private ObservableCollection<string> certifications = [];
+
+        [RelayCommand]
+        void AddCertification()
+        {
+            if (string.IsNullOrWhiteSpace(Certification)) return;
+            Certifications.Add(Certification);
+            Certification = string.Empty;
+        }
+
+        [RelayCommand]
+        void RemoveCertification(string certification) => Certifications.Remove(certification);
 
         // Skills
         [ObservableProperty]
@@ -282,9 +293,9 @@ namespace ResumeBuilderMAUI.ViewModels
                 DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
                 return;
             }
+            CreateResume.CreateResumePDF(this);
             DisplayAlertHelpers.ShowAlert("Saved", $"{Formatters.FormatJson(Data)}");
             ClearEntriesHelper.ClearAllEntries(this);
-            CreateResume.CreateResumePDF(this);
         }
 
 

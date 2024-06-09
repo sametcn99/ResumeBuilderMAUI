@@ -22,18 +22,20 @@ namespace ResumeBuilderMAUI.Helpers
             mainViewModel.Website = "https://www.johndoe.com";
             mainViewModel.LinkedIn = "https://www.linkedin.com/in/johndoe";
             mainViewModel.GitHub = "https://www.github.com/johndoe";
-            mainViewModel.Certifications = "Microsoft Certified: Azure Developer Associate";
+            mainViewModel.Certifications.Add("Microsoft Certified: Azure Developer Associate");
+            mainViewModel.Certifications.Add("Certified Scrum Master (CSM)");
             mainViewModel.Languages = "English, Spanish";
-            mainViewModel.Address = "123 Main St, City, State, Zip";
-            mainViewModel.SkillList = new System.Collections.ObjectModel.ObservableCollection<string>
-            {
-                "C#",
-                "Xamarin",
-                "MAUI",
-                "Azure",
-                "JavaScript",
-                "SQL"
-            };
+            mainViewModel.Address = "1600 Pennsylvania Ave NW, Washington, DC 20500";
+            mainViewModel.SkillList.Add("C#");
+            mainViewModel.SkillList.Add(".NET");
+            mainViewModel.SkillList.Add("ASP.NET Core");
+            mainViewModel.SkillList.Add("Angular");
+            mainViewModel.SkillList.Add("Xamarin");
+            mainViewModel.SkillList.Add("SQL Server");
+            mainViewModel.SkillList.Add("Azure");
+            mainViewModel.SkillList.Add("Git");
+            mainViewModel.SkillList.Add("Agile");
+            mainViewModel.SkillList.Add("Scrum");
 
             mainViewModel.Educations.Add(new EducationModel
             {
@@ -57,6 +59,22 @@ namespace ResumeBuilderMAUI.Helpers
                 Description = "Worked on developing and maintaining web applications using C# and .NET framework. Implemented various features and enhancements, fixed bugs, and collaborated with cross-functional teams to ensure timely delivery of projects."
             });
 
+            mainViewModel.Experiences.Add(new ExperienceModel
+            {
+                Id = 2,
+                Title = "Software Engineer",
+                Company = "ABC Inc",
+                Position = "Software Engineer",
+                StartDate = "2021-08-01",
+                EndDate = "Present",
+                Description = "Responsible for designing and developing scalable cloud-based applications using Azure services. " +
+                              "Collaborated with product managers and UX designers to create user-friendly interfaces and optimize application performance. " +
+                              "Implemented CI/CD pipelines for automated testing and deployment. " +
+                              "Participated in code reviews and provided mentorship to junior developers. " +
+                              "Contributed to the architecture and design of new features and services. " +
+                              "Actively involved in agile ceremonies and sprint planning to deliver high-quality software solutions."
+            });
+
             mainViewModel.Projects.Add(new ProjectModel
             {
                 Id = 1,
@@ -68,7 +86,6 @@ namespace ResumeBuilderMAUI.Helpers
                               "The project was completed on time and received positive feedback from stakeholders for its functionality and reliability.",
                 StartDate = "2021-08-01",
                 EndDate = "2022-01-01",
-                Status = "Completed",
                 Link = "https://www.project1.com"
             });
 
@@ -83,8 +100,7 @@ namespace ResumeBuilderMAUI.Helpers
                               "Ongoing development involves close collaboration with UI/UX designers to enhance user experience and incorporating user feedback to continuously improve the app's functionality. " +
                               "Expected to launch in the app stores once the final phase of testing and optimization is completed.",
                 StartDate = "2022-02-01",
-                EndDate = "2022-07-01",
-                Status = "In Progress",
+                EndDate = "Present",
                 Link = "https://www.project2.com"
             });
         }

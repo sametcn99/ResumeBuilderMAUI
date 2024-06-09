@@ -33,7 +33,7 @@
             </Grid>
             <Editor Placeholder="Summary"
                     MinimumHeightRequest="150"
-                   Text="{Binding Summary}" />
+                    Text="{Binding Summary}" />
             <Entry Placeholder="Email"
                    Text="{Binding Email}" />
             <Entry Placeholder="Website"
@@ -41,8 +41,6 @@
             <Editor Placeholder="Address"
                     MinimumHeightRequest="100"
                     Text="{Binding Address}" />
-            <Entry Placeholder="Certifications"
-                   Text="{Binding Certifications}" />
             <Entry Placeholder="Languages"
                    Text="{Binding Languages}" />
             <Entry Placeholder="LinkedIn"
@@ -133,8 +131,7 @@
             <!--Experience Section-->
             <Label Text="Experience"
                    FontSize="Title"
-                   FontAttributes="Bold"
-                 />
+                   FontAttributes="Bold" />
             <ListView ItemsSource="{Binding Experiences}">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:ExperienceModel">
@@ -163,8 +160,7 @@
                                                      Grid.Column="2"
                                                      Margin="10,0,0,0">
                                             <Label Text="{Binding StartDate}"
-                                                   FontSize="Default"
-                                                 />
+                                                   FontSize="Default" />
                                             <Label Text="{Binding EndDate}"
                                                    FontSize="Default"
                                                    Margin="5,0,0,0" />
@@ -267,12 +263,9 @@
                   ColumnSpacing="10">
                 <Entry Placeholder="Project Title"
                        Grid.Column="0"
+                       Grid.ColumnSpan="2"
                        Grid.Row="0"
                        Text="{Binding ProjectTitle}" />
-                <Entry Placeholder="Status"
-                       Grid.Column="1"
-                       Grid.Row="0"
-                       Text="{Binding ProjectStatus}" />
                 <Entry Placeholder="Start Date"
                        Grid.Column="0"
                        Grid.Row="1"
@@ -312,11 +305,40 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
-                <Entry x:Name="SkillEntry"
+                <Entry
                        Placeholder="Add Skill"
                        Text="{Binding Skill}" />
                 <Button Text="Add Skill"
                         Command="{Binding AddSkillCommand}" />
+            </VerticalStackLayout>
+
+            <!--Certificate Section-->
+            <Label Text="Certifications"
+                   FontSize="Title"
+                   FontAttributes="Bold" />
+            <VerticalStackLayout Spacing="10">
+                <CollectionView ItemsSource="{Binding Certifications}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10"
+                                   Padding="10"
+                                   Margin="5">
+                                <FlexLayout JustifyContent="SpaceBetween">
+                                    <Label Text="{Binding .}"
+                                           FontSize="Small" />
+                                    <Button Text="Remove"
+                                            Command="{Binding BindingContext.RemoveCertificationCommand, Source={x:Reference Layout}}"
+                                            CommandParameter="{Binding .}" />
+                                </FlexLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Entry 
+                       Placeholder="Add Certification"
+                       Text="{Binding Certification}" />
+                <Button Text="Add Skill"
+                        Command="{Binding AddCertificationCommand}" />
             </VerticalStackLayout>
 
             <!--Save Button-->
