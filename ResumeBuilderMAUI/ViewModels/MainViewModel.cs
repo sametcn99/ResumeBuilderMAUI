@@ -10,12 +10,12 @@ namespace ResumeBuilderMAUI.ViewModels
 {
     public partial class MainViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
-#if DEBUG
-        public MainViewModel()
-        {
-            FillEntriesInDebug.FillEntries(this);
-        }
-#endif
+        //#if DEBUG
+        //        public MainViewModel()
+        //        {
+        //            FillEntriesInDebug.FillEntries(this);
+        //        }
+        //#endif
 
         // Personal Information
         [ObservableProperty]
@@ -269,8 +269,7 @@ namespace ResumeBuilderMAUI.ViewModels
                     DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
                     return;
                 }
-
-                int ResumeId = Generators.RandomNumber();
+                string ResumeId = $"{this.FirstName}_{this.LastName}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
 
                 await LocalDbService.AddPerson(new Person
                 {

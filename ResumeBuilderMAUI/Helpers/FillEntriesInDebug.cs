@@ -8,7 +8,6 @@ namespace ResumeBuilderMAUI.Helpers
     {
         public static async void FillEntries(MainViewModel mainViewModel)
         {
-            int ResumeId = Generators.RandomNumber();
 
             // Personal Information
             mainViewModel.FirstName = "John";
@@ -109,6 +108,8 @@ namespace ResumeBuilderMAUI.Helpers
 
             try
             {
+                string ResumeId = $"{mainViewModel.FirstName}_{mainViewModel.LastName}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
+
                 await LocalDbService.AddPerson(new Person
                 {
                     ResumeId = ResumeId,

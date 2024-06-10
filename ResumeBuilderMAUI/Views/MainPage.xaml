@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ResumeBuilderMAUI.Views.MainPage"
              xmlns:viewmodel="clr-namespace:ResumeBuilderMAUI.ViewModels"
-             x:DataType="viewmodel:MainViewModel">
+             x:DataType="viewmodel:LoginViewModel">
     <ScrollView>
         <VerticalStackLayout Padding="20"
                              Spacing="25">
@@ -16,40 +16,26 @@
             <!-- CV Selection Section -->
             <VerticalStackLayout Spacing="15">
                 <Picker x:Name="NamePicker"
-                        Title="Select Name">
-                    <Picker.Items>
-                        <x:String>John Doe</x:String>
-                        <x:String>Jane Smith</x:String>
-                        <x:String>Michael Brown</x:String>
-                    </Picker.Items>
-                </Picker>
-                <Picker x:Name="CVPicker"
-                        Title="Select Resume">
-                    <Picker.Items>
-                        <x:String>CV 1</x:String>
-                        <x:String>CV 2</x:String>
-                        <x:String>CV 3</x:String>
-                    </Picker.Items>
-                </Picker>
+                        Title="Select Resume" />
+
             </VerticalStackLayout>
-            <Button 
-                x:Name="ContinueButton"
-                Text="Continue"
+            <Button x:Name="ContinueButton"
+                    Text="Continue"
                     BackgroundColor="#2980b9"
                     TextColor="White"
                     CornerRadius="20"
                     HorizontalOptions="Center"
-                    WidthRequest="200" />
+                    WidthRequest="200" 
+                    Clicked="OnContinueButtonClicked"/>
 
-            <Button 
-                x:Name="CreateResumeButton"
-                Text="Create New Resume"
+            <Button x:Name="CreateResumeButton"
+                    Text="Create New Resume"
                     BackgroundColor="#27ae60"
                     TextColor="White"
                     CornerRadius="20"
                     HorizontalOptions="Center"
                     WidthRequest="200"
-                    Clicked="OnCreateResumeClicked" />
+                Command="{Binding CreateResumeClickedCommand}"/>
 
             <Button Text="View Source Code"
                     BackgroundColor="#e67e22"
@@ -57,7 +43,7 @@
                     CornerRadius="20"
                     HorizontalOptions="Center"
                     WidthRequest="200"
-                    Clicked="OnViewSourceCodeClicked" />
+                    Command="{Binding ViewSourceCodeClickedCommand}" />
         </VerticalStackLayout>
     </ScrollView>
 

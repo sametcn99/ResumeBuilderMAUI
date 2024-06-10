@@ -1,13 +1,15 @@
-using ResumeBuilderMAUI.Helpers;
 using ResumeBuilderMAUI.ViewModels;
 
 namespace ResumeBuilderMAUI.Views;
 
 public partial class CreateResumePage : ContentPage
 {
-    public CreateResumePage(MainViewModel vm)
+    public CreateResumePage(MainViewModel? vm)
     {
-        BindingContext = vm;
+        if (vm is null)
+            BindingContext = new MainViewModel();
+        else
+            BindingContext = vm;
         InitializeComponent();
     }
     protected override bool OnBackButtonPressed()
@@ -20,7 +22,6 @@ public partial class CreateResumePage : ContentPage
                 if (result)
                 {
                     await Navigation.PopAsync();
-                    ClearEntriesHelper.ClearAllEntries(viewModel: (MainViewModel)BindingContext);
                 }
             });
         }

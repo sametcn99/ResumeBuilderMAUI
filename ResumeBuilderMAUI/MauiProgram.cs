@@ -19,6 +19,7 @@ namespace ResumeBuilderMAUI
                     fonts.AddFont("Montserrat-VariableFont_wght.ttf", "Montserrat");
                 });
             builder.Services.AddSingleton<MainViewModel>();
+            builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<CreateResumePage>();
 

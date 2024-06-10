@@ -1,26 +1,58 @@
-﻿using ResumeBuilderMAUI.ViewModels;
+﻿using ResumeBuilderMAUI.Services;
+using ResumeBuilderMAUI.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace ResumeBuilderMAUI.Views
 {
     public partial class MainPage : ContentPage
     {
+        public ObservableCollection<string> ResumeIds { get; set; }
 
-        public MainPage(MainViewModel vm)
+        public MainPage()
         {
-            BindingContext = vm;
+            LoadNames();
+            BindingContext = new LoginViewModel();
             InitializeComponent();
+
+            // Subscribe to the SelectedIndexChanged event
+            NamePicker.SelectedIndexChanged += OnNamePickerSelectedIndexChanged;
+
+            UpdateContinueButton();
+
         }
-        async void OnCreateResumeClicked(object sender, EventArgs e)
+
+        private void OnNamePickerSelectedIndexChanged(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CreateResumePage(vm: (MainViewModel)BindingContext!));
+            UpdateContinueButton();
         }
-        void OnViewSourceCodeClicked(object sender, EventArgs e)
+
+        private void UpdateContinueButton()
         {
-            Task.Run(async () =>
+            if (NamePicker.SelectedIndex == -1)
             {
-                await Launcher.OpenAsync(new Uri("https://github.com/sametcn99/ResumeBuilderMAUI"));
-            }).Wait();
+                ContinueButton.IsEnabled = false;
+                ContinueButton.BackgroundColor = Color.FromHex("#B0B0B0");
+            }
+            else
+            {
+                ContinueButton.IsEnabled = true;
+                ContinueButton.BackgroundColor = Color.FromHex("#2196F3");
+            }
+        }
+
+        public async Task LoadNames()
+        {
+            var persons = await LocalDbService.GetAllPersons();
+            ResumeIds = new ObservableCollection<string>(persons.Select(p => $"{p.ResumeId}").Distinct());
+            NamePicker.ItemsSource = ResumeIds;
+        }
+
+        async void OnContinueButtonClicked(object sender, EventArgs e)
+        {
+
+            var selectedResumeId = ResumeIds[NamePicker.SelectedIndex];
+            var resume = await LocalDbService.GetResumeByResumeId(selectedResumeId);
+            await Navigation.PushAsync(new CreateResumePage(resume));
         }
     }
-
 }

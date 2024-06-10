@@ -3,8 +3,8 @@
 
     public class Person
     {
-        public int ResumeId { get; set; }
-        public string ResumeDate { get; set; }
+        public string? ResumeId { get; set; }
+        public string? ResumeDate { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Summary { get; set; }
@@ -19,14 +19,14 @@
 
     public class Certification
     {
-        public int ResumeId { get; set; }
+        public string? ResumeId { get; set; }
         public int Id { get; set; }
         public string? Name { get; set; }
     }
 
     public class Education
     {
-        public int ResumeId { get; set; }
+        public string? ResumeId { get; set; }
         public int Id { get; set; }
         public string? School { get; set; }
         public string? Degree { get; set; }
@@ -38,7 +38,7 @@
 
     public class Experience
     {
-        public int ResumeId { get; set; }
+        public string? ResumeId { get; set; }
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? Company { get; set; }
@@ -50,7 +50,7 @@
 
     public class Project
     {
-        public int ResumeId { get; set; }
+        public string? ResumeId { get; set; }
         public int Id { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
@@ -62,7 +62,7 @@
 
     public class Skill
     {
-        public int ResumeId { get; set; }
+        public string? ResumeId { get; set; }
         public int Id { get; set; }
         public string? Name { get; set; }
     }

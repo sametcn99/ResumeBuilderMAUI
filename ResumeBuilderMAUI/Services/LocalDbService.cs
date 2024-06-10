@@ -1,6 +1,9 @@
-﻿using ResumeBuilderMAUI.Helpers;
+﻿using MvvmHelpers;
+using ResumeBuilderMAUI.Helpers;
 using ResumeBuilderMAUI.Models;
+using ResumeBuilderMAUI.ViewModels;
 using SQLite;
+using System.Collections.ObjectModel;
 
 namespace ResumeBuilderMAUI.Services
 {
@@ -82,11 +85,33 @@ namespace ResumeBuilderMAUI.Services
             return persons;
         }
 
-        public static async Task<List<Person>> GetPersonsByName(string firstName, string lastName)
+        public static async Task<MainViewModel> GetResumeByResumeId(string resumeId)
         {
             await Inıt();
-            var persons = await db.Table<Person>().Where(x => x.FirstName == firstName && x.LastName == lastName).ToListAsync();
-            return persons;
+            var person = await db.Table<Person>().Where(p => p.ResumeId == resumeId).FirstOrDefaultAsync();
+            var certifications = await db.Table<Certification>().Where(c => c.ResumeId == person.ResumeId).ToListAsync();
+            var educations = await db.Table<Education>().Where(e => e.ResumeId == person.ResumeId).ToListAsync();
+            var experiences = await db.Table<Experience>().Where(e => e.ResumeId == person.ResumeId).ToListAsync();
+            var projects = await db.Table<Project>().Where(p => p.ResumeId == person.ResumeId).ToListAsync();
+            var skills = await db.Table<Skill>().Where(s => s.ResumeId == person.ResumeId).ToListAsync();
+            var Resume = new MainViewModel
+            {
+                FirstName = person.FirstName,
+                LastName = person.LastName,
+                Email = person.Email,
+                PhoneNumber = person.PhoneNumber,
+                Address = person.Address,
+                Summary = person.Summary,
+                LinkedIn = person.LinkedIn,
+                GitHub = person.GitHub,
+                Certifications = new ObservableCollection<string>(certifications.Select(c => c.Name)),
+                Educations = new ObservableRangeCollection<Education>(educations),
+                Experiences = new ObservableRangeCollection<Experience>(experiences),
+                Projects = new ObservableRangeCollection<Project>(projects),
+                SkillList = new ObservableCollection<string>(skills.Select(s => s.Name))
+            };
+
+            return Resume;
         }
     }
 }
