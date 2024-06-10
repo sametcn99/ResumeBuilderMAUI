@@ -1,9 +1,10 @@
 ﻿using QuestPDF.Fluent;
+using ResumeBuilderMAUI.Helpers;
 using ResumeBuilderMAUI.ViewModels;
 
-namespace ResumeBuilderMAUI.Helpers
+namespace ResumeBuilderMAUI.Services
 {
-    internal class CreateResume
+    internal class ResumeService
     {
         public static void CreateResumePDF(MainViewModel mainViewModel)
         {

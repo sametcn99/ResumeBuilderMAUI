@@ -8,7 +8,7 @@ namespace ResumeBuilderMAUI.Helpers
     {
         public static async void FillEntries(MainViewModel mainViewModel)
         {
-            int ResumeId = new Random().Next(1, 1000);
+            int ResumeId = Generators.RandomNumber();
 
             // Personal Information
             mainViewModel.FirstName = "John";

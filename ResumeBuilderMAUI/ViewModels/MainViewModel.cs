@@ -353,7 +353,7 @@ namespace ResumeBuilderMAUI.ViewModels
                         Name = skill
                     });
                 }
-                CreateResume.CreateResumePDF(this);
+                ResumeService.CreateResumePDF(this);
                 DisplayAlertHelpers.ShowAlert("Saved", $"{Formatters.FormatJson(new
                 {
                     Id = 1,
