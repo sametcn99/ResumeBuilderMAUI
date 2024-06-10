@@ -73,13 +73,13 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         private string? experienceCompany;
 
-        public ObservableRangeCollection<ExperienceModel> Experiences { get; set; } = [];
+        public ObservableRangeCollection<Experience> Experiences { get; set; } = [];
 
         [RelayCommand]
         void AddExperience()
         {
             if (string.IsNullOrWhiteSpace(ExperienceTitle)) return;
-            var experienceData = new ExperienceModel
+            var experienceData = new Experience
             {
                 Id = Experiences.Count + 1,
                 Title = ExperienceTitle,
@@ -121,14 +121,14 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         private string? educationGrade;
 
-        public ObservableRangeCollection<EducationModel> Educations { get; set; } = [];
+        public ObservableRangeCollection<Education> Educations { get; set; } = [];
 
         [RelayCommand]
         void AddEducation()
         {
             if (string.IsNullOrWhiteSpace(EducationSchool)) return;
 
-            var educationData = new EducationModel
+            var educationData = new Education
             {
                 Id = Educations.Count + 1,
                 School = EducationSchool,
@@ -166,14 +166,14 @@ namespace ResumeBuilderMAUI.ViewModels
         [ObservableProperty]
         private string? projectLink;
 
-        public ObservableRangeCollection<ProjectModel> Projects { get; set; } = [];
+        public ObservableRangeCollection<Project> Projects { get; set; } = [];
 
         [RelayCommand]
         void AddProject()
         {
             if (string.IsNullOrWhiteSpace(ProjectTitle)) return;
 
-            var projectData = new ProjectModel
+            var projectData = new Project
             {
                 Id = Projects.Count + 1,
                 Title = ProjectTitle,
@@ -303,7 +303,7 @@ namespace ResumeBuilderMAUI.ViewModels
                     await LocalDbService.AddEducation(new Education
                     {
                         ResumeId = ResumeId,
-                        Id = education.Id ?? i + 1,
+                        Id = education.Id,
                         School = education.School,
                         Degree = education.Degree,
                         StartDate = education.StartDate,

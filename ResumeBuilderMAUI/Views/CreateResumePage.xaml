@@ -56,7 +56,7 @@
                    FontAttributes="Bold" />
             <ListView ItemsSource="{Binding Educations}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:EducationModel">
+                    <DataTemplate x:DataType="model:Education">
                         <ViewCell>
                             <Frame CornerRadius="10"
                                    Padding="10"
@@ -134,7 +134,7 @@
                    FontAttributes="Bold" />
             <ListView ItemsSource="{Binding Experiences}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:ExperienceModel">
+                    <DataTemplate x:DataType="model:Experience">
                         <ViewCell>
                             <Frame CornerRadius="10"
                                    Padding="10"
@@ -212,7 +212,7 @@
                    FontAttributes="Bold" />
             <ListView ItemsSource="{Binding Projects}">
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="model:ProjectModel">
+                    <DataTemplate x:DataType="model:Project">
                         <ViewCell>
                             <Frame CornerRadius="10"
                                    Padding="10"

@@ -40,7 +40,7 @@ namespace ResumeBuilderMAUI.Helpers
             mainViewModel.SkillList.Add("Agile");
             mainViewModel.SkillList.Add("Scrum");
 
-            mainViewModel.Educations.Add(new EducationModel
+            mainViewModel.Educations.Add(new Education
             {
                 Id = 1,
                 Description = "In-depth study of computer science fundamentals including data structures, algorithms, software engineering principles, and system design. Participated in various projects and hackathons, gaining practical experience.",
@@ -51,7 +51,7 @@ namespace ResumeBuilderMAUI.Helpers
                 EndDate = "2019-05-01",
             });
 
-            mainViewModel.Experiences.Add(new ExperienceModel
+            mainViewModel.Experiences.Add(new Experience
             {
                 Id = 1,
                 Title = "Software Developer",
@@ -62,7 +62,7 @@ namespace ResumeBuilderMAUI.Helpers
                 Description = "Worked on developing and maintaining web applications using C# and .NET framework. Implemented various features and enhancements, fixed bugs, and collaborated with cross-functional teams to ensure timely delivery of projects."
             });
 
-            mainViewModel.Experiences.Add(new ExperienceModel
+            mainViewModel.Experiences.Add(new Experience
             {
                 Id = 2,
                 Title = "Software Engineer",
@@ -78,7 +78,7 @@ namespace ResumeBuilderMAUI.Helpers
                               "Actively involved in agile ceremonies and sprint planning to deliver high-quality software solutions."
             });
 
-            mainViewModel.Projects.Add(new ProjectModel
+            mainViewModel.Projects.Add(new Project
             {
                 Id = 1,
                 Title = "E-commerce Website",
@@ -92,7 +92,7 @@ namespace ResumeBuilderMAUI.Helpers
                 Link = "https://www.project1.com"
             });
 
-            mainViewModel.Projects.Add(new ProjectModel
+            mainViewModel.Projects.Add(new Project
             {
                 Id = 2,
                 Title = "Mobile Application for Task Management",
@@ -139,7 +139,7 @@ namespace ResumeBuilderMAUI.Helpers
                     await LocalDbService.AddEducation(new Education
                     {
                         ResumeId = ResumeId,
-                        Id = education.Id ?? i + 1,
+                        Id = education.Id,
                         School = education.School,
                         Degree = education.Degree,
                         StartDate = education.StartDate,
