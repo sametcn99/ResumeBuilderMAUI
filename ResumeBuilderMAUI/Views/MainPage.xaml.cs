@@ -9,7 +9,6 @@ namespace ResumeBuilderMAUI.Views
         {
             BindingContext = vm;
             InitializeComponent();
-
         }
         async void OnCreateResumeClicked(object sender, EventArgs e)
         {

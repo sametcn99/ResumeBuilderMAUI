@@ -32,14 +32,18 @@
                     </Picker.Items>
                 </Picker>
             </VerticalStackLayout>
-            <Button Text="Continue"
+            <Button 
+                x:Name="ContinueButton"
+                Text="Continue"
                     BackgroundColor="#2980b9"
                     TextColor="White"
                     CornerRadius="20"
                     HorizontalOptions="Center"
                     WidthRequest="200" />
 
-            <Button Text="Create New Resume"
+            <Button 
+                x:Name="CreateResumeButton"
+                Text="Create New Resume"
                     BackgroundColor="#27ae60"
                     TextColor="White"
                     CornerRadius="20"

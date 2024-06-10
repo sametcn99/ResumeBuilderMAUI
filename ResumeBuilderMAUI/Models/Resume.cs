@@ -4,6 +4,7 @@
     public class Person
     {
         public int ResumeId { get; set; }
+        public string ResumeDate { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Summary { get; set; }

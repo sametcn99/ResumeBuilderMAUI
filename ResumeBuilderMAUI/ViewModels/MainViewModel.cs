@@ -275,6 +275,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 await LocalDbService.AddPerson(new Person
                 {
                     ResumeId = ResumeId,
+                    ResumeDate = DateTime.Now.ToString("MM/dd/yyyy"),
                     FirstName = FirstName,
                     LastName = LastName,
                     Summary = Summary,

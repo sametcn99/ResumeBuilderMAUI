@@ -75,5 +75,18 @@ namespace ResumeBuilderMAUI.Services
             await db.InsertAsync(skill);
         }
 
+        public static async Task<List<Person>> GetAllPersons()
+        {
+            await Inıt();
+            var persons = await db.Table<Person>().ToListAsync();
+            return persons;
+        }
+
+        public static async Task<List<Person>> GetPersonsByName(string firstName, string lastName)
+        {
+            await Inıt();
+            var persons = await db.Table<Person>().Where(x => x.FirstName == firstName && x.LastName == lastName).ToListAsync();
+            return persons;
+        }
     }
 }
