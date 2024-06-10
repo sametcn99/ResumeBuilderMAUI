@@ -194,7 +194,7 @@ namespace ResumeBuilderMAUI.Helpers
             }
             catch (Exception ex)
             {
-                DisplayAlertHelpers.ShowAlert("Error", ex.Message);
+                Dialogs.ShowAlert("Error", ex.Message);
             }
         }
     }

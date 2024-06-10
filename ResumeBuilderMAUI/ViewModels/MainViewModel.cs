@@ -266,7 +266,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 CheckForErrors();
                 if (Errors.Count > 0)
                 {
-                    DisplayAlertHelpers.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
+                    Dialogs.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
                     return;
                 }
                 string ResumeId = $"{this.FirstName}_{this.LastName}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
@@ -354,30 +354,30 @@ namespace ResumeBuilderMAUI.ViewModels
                     });
                 }
                 ResumeService.CreateResumePDF(this);
-                DisplayAlertHelpers.ShowAlert("Saved", $"{Formatters.FormatJson(new
-                {
-                    Id = 1,
-                    FirstName,
-                    LastName,
-                    Summary,
-                    PhoneNumber,
-                    SkillList,
-                    Email,
-                    Website,
-                    Address,
-                    Certifications,
-                    Languages,
-                    LinkedIn,
-                    GitHub,
-                    Educations,
-                    Experiences,
-                    Projects
-                })}");
+                //Dialogs.ShowAlert("Saved", $"{Formatters.FormatJson(new
+                //{
+                //    Id = 1,
+                //    FirstName,
+                //    LastName,
+                //    Summary,
+                //    PhoneNumber,
+                //    SkillList,
+                //    Email,
+                //    Website,
+                //    Address,
+                //    Certifications,
+                //    Languages,
+                //    LinkedIn,
+                //    GitHub,
+                //    Educations,
+                //    Experiences,
+                //    Projects
+                //})}");
                 ClearEntriesHelper.ClearAllEntries(this);
             }
             catch (Exception ex)
             {
-                DisplayAlertHelpers.ShowAlert("Error", ex.Message);
+                Dialogs.ShowAlert("Error", ex.Message);
             }
         }
     }

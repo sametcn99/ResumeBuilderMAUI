@@ -30,7 +30,7 @@ namespace ResumeBuilderMAUI.Services
             }
             catch (Exception ex)
             {
-                DisplayAlertHelpers.ShowAlert("Error", ex.Message);
+                Dialogs.ShowAlert("Error", ex.Message);
                 return null;
             }
         }
@@ -62,7 +62,7 @@ namespace ResumeBuilderMAUI.Services
             }
             catch (Exception ex)
             {
-                DisplayAlertHelpers.ShowAlert("Error", ex.Message);
+                Dialogs.ShowAlert("Error", ex.Message);
             }
         }
 

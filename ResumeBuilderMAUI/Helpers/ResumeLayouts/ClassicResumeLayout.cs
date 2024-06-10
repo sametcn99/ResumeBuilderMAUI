@@ -8,7 +8,7 @@ namespace ResumeBuilderMAUI.Helpers
     internal class ClassicResumeLayout
     {
         [Obsolete]
-        public static Document GenerateClassicResumeLayout(MainViewModel mainViewModel)
+        public static async Task GenerateClassicResumeLayout(MainViewModel mainViewModel)
         {
             var document = Document.Create(container =>
             {
@@ -120,7 +120,14 @@ namespace ResumeBuilderMAUI.Helpers
                         });
                 });
             });
-            return document;
+            var data = document.GeneratePdf();
+
+            if (document is not null)
+            {
+                string fileName = $"{mainViewModel.FirstName}_{mainViewModel.LastName}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}.pdf";
+                var cancellationToken = new CancellationToken();
+                await Dialogs.SaveResume(cancellationToken, fileName, data);
+            }
         }
     }
 }
