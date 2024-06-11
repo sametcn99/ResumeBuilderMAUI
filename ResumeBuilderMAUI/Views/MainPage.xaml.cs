@@ -16,9 +16,16 @@ namespace ResumeBuilderMAUI.Views
 
             // Subscribe to the SelectedIndexChanged event
             NamePicker.SelectedIndexChanged += OnNamePickerSelectedIndexChanged;
+            LocalDbService.DataChanged += OnDataChanged;
 
             UpdateContinueButton();
 
+        }
+
+        private async void OnDataChanged(object sender, EventArgs e)
+        {
+            // Reload data when it changes
+            await LoadNames();
         }
 
         private void OnNamePickerSelectedIndexChanged(object sender, EventArgs e)

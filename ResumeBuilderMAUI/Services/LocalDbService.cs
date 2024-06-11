@@ -9,6 +9,8 @@ namespace ResumeBuilderMAUI.Services
 {
     public static class LocalDbService
     {
+        public static event EventHandler DataChanged;
+
         static SQLiteAsyncConnection db;
 
         static async Task<SQLiteAsyncConnection> Inıt()
@@ -39,6 +41,7 @@ namespace ResumeBuilderMAUI.Services
         {
             await Inıt();
             await db.InsertAsync(resume);
+            DataChanged?.Invoke(null, EventArgs.Empty);
         }
 
         public static async Task AddCertification(Certification certification)
