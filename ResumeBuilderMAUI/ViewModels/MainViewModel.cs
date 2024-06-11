@@ -90,7 +90,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 EndDate = ExperienceEndDate,
             };
             Experiences.Add(experienceData);
-            ClearEntriesHelper.ClearExperienceEntries(this);
+            Clearers.ClearExperienceEntries(this);
         }
 
         [RelayCommand]
@@ -139,7 +139,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 Description = EducationDescription,
             };
             Educations.Add(educationData);
-            ClearEntriesHelper.ClearEducationEntries(this);
+            Clearers.ClearEducationEntries(this);
         }
 
         [RelayCommand]
@@ -183,7 +183,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 Link = ProjectLink,
             };
             Projects.Add(projectData);
-            ClearEntriesHelper.ClearProjectEntries(this);
+            Clearers.ClearProjectEntries(this);
         }
 
         [RelayCommand]
@@ -373,7 +373,7 @@ namespace ResumeBuilderMAUI.ViewModels
                 //    Experiences,
                 //    Projects
                 //})}");
-                ClearEntriesHelper.ClearAllEntries(this);
+                Clearers.ClearAllEntries(this);
             }
             catch (Exception ex)
             {
