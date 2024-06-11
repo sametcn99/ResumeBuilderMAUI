@@ -7,9 +7,6 @@ namespace ResumeBuilderMAUI.Services
     {
         public static async Task CreateResumePDF(MainViewModel mainViewModel)
         {
-            //string filePath = Path.Combine(FileSystem.Current.CacheDirectory, $"{DateTime.Now:yyyyMMdd_HHmmss}.pdf");
-
-
             try
             {
                 var document = ClassicResumeLayout.GenerateClassicResumeLayout(mainViewModel);

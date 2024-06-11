@@ -1,5 +1,4 @@
 ﻿using ResumeBuilderMAUI.Models;
-using ResumeBuilderMAUI.Services;
 using ResumeBuilderMAUI.ViewModels;
 
 namespace ResumeBuilderMAUI.Helpers
@@ -8,8 +7,6 @@ namespace ResumeBuilderMAUI.Helpers
     {
         public static async void FillEntries(MainViewModel mainViewModel)
         {
-
-            // Personal Information
             mainViewModel.FirstName = "John";
             mainViewModel.LastName = "Doe";
             mainViewModel.Summary = "Highly motivated and results-driven Software Developer with over 3 years of experience in designing, developing, and deploying cutting-edge applications. " +
@@ -106,97 +103,6 @@ namespace ResumeBuilderMAUI.Helpers
                 Link = "https://www.project2.com"
             });
 
-            try
-            {
-                string ResumeId = $"{mainViewModel.FirstName}_{mainViewModel.LastName}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
-
-                await LocalDbService.AddPerson(new Person
-                {
-                    ResumeId = ResumeId,
-                    FirstName = mainViewModel.FirstName,
-                    LastName = mainViewModel.LastName,
-                    Summary = mainViewModel.Summary,
-                    PhoneNumber = mainViewModel.PhoneNumber,
-                    Email = mainViewModel.Email,
-                    Website = mainViewModel.Website,
-                    LinkedIn = mainViewModel.LinkedIn,
-                    GitHub = mainViewModel.GitHub,
-                    Languages = mainViewModel.Languages,
-                    Address = mainViewModel.Address
-                });
-
-                for (int i = 0; i < mainViewModel.Certifications.Count; i++)
-                {
-                    await LocalDbService.AddCertification(new Certification
-                    {
-                        ResumeId = ResumeId,
-                        Id = i,
-                        Name = mainViewModel.Certifications[i]
-                    });
-                }
-                for (int i = 0; i < mainViewModel.Educations.Count; i++)
-                {
-                    var education = mainViewModel.Educations[i];
-                    await LocalDbService.AddEducation(new Education
-                    {
-                        ResumeId = ResumeId,
-                        Id = education.Id,
-                        School = education.School,
-                        Degree = education.Degree,
-                        Grade = education.Grade,
-                        StartDate = education.StartDate,
-                        EndDate = education.EndDate,
-                        Description = education.Description
-                    });
-                }
-
-                for (int i = 0; i < mainViewModel.Experiences.Count; i++)
-                {
-                    var experience = mainViewModel.Experiences[i];
-                    await LocalDbService.AddExperience(new Experience
-                    {
-                        ResumeId = ResumeId,
-                        Id = experience.Id,
-                        Company = experience.Company,
-                        Position = experience.Position,
-                        StartDate = experience.StartDate,
-                        EndDate = experience.EndDate,
-                        Description = experience.Description
-                    });
-                }
-
-                for (int i = 0; i < mainViewModel.Projects.Count; i++)
-                {
-                    var project = mainViewModel.Projects[i];
-                    await LocalDbService.AddProject(new Project
-                    {
-                        ResumeId = ResumeId,
-                        Id = i,
-                        Title = project.Title,
-                        Description = project.Description,
-                        StartDate = project.StartDate,
-                        EndDate = project.EndDate,
-                        Status = project.Status,
-                        Link = project.Link
-                    });
-                }
-
-                for (int i = 0; i < mainViewModel.SkillList.Count; i++)
-                {
-                    var skill = mainViewModel.SkillList[i];
-                    await LocalDbService.AddSkill(new Skill
-                    {
-                        Id = i,
-                        ResumeId = ResumeId,
-                        Name = skill
-                    });
-                }
-
-            }
-            catch (Exception ex)
-            {
-                Dialogs.ShowAlert("Error", ex.Message);
-            }
         }
     }
 }

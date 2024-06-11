@@ -43,14 +43,8 @@ namespace ResumeBuilderMAUI.Helpers
             {
                 using var stream = new MemoryStream(document);
                 var fileSaverResult = await FileSaver.Default.SaveAsync(fileName, stream, cancellationToken);
-                if (fileSaverResult.IsSuccessful)
-                {
-                    Dialogs.ShowAlert("Success", $"The file was saved successfully to location: {fileSaverResult.FilePath}");
-                }
-                else
-                {
+                if (!fileSaverResult.IsSuccessful)
                     Dialogs.ShowAlert("Error", $"The file was not saved successfully with error: {fileSaverResult.Exception.Message}");
-                }
             }
             catch (Exception ex)
             {

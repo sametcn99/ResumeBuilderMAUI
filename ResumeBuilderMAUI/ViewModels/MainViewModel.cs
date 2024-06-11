@@ -353,26 +353,7 @@ namespace ResumeBuilderMAUI.ViewModels
                         Name = skill
                     });
                 }
-                ResumeService.CreateResumePDF(this);
-                //Dialogs.ShowAlert("Saved", $"{Formatters.FormatJson(new
-                //{
-                //    Id = 1,
-                //    FirstName,
-                //    LastName,
-                //    Summary,
-                //    PhoneNumber,
-                //    SkillList,
-                //    Email,
-                //    Website,
-                //    Address,
-                //    Certifications,
-                //    Languages,
-                //    LinkedIn,
-                //    GitHub,
-                //    Educations,
-                //    Experiences,
-                //    Projects
-                //})}");
+                await ResumeService.CreateResumePDF(this);
                 Clearers.ClearAllEntries(this);
             }
             catch (Exception ex)
