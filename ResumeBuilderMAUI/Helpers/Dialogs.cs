@@ -39,15 +39,23 @@ namespace ResumeBuilderMAUI.Helpers
 
         public static async Task SaveResume(CancellationToken cancellationToken, string fileName, byte[] document)
         {
-            using var stream = new MemoryStream(document);
-            var fileSaverResult = await FileSaver.Default.SaveAsync(fileName, stream, cancellationToken);
-            if (fileSaverResult.IsSuccessful)
+            try
             {
-                Dialogs.ShowAlert("Success", $"The file was saved successfully to location: {fileSaverResult.FilePath}");
+                using var stream = new MemoryStream(document);
+                var fileSaverResult = await FileSaver.Default.SaveAsync(fileName, stream, cancellationToken);
+                if (fileSaverResult.IsSuccessful)
+                {
+                    Dialogs.ShowAlert("Success", $"The file was saved successfully to location: {fileSaverResult.FilePath}");
+                }
+                else
+                {
+                    Dialogs.ShowAlert("Error", $"The file was not saved successfully with error: {fileSaverResult.Exception.Message}");
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Dialogs.ShowAlert("Error", $"The file was not saved successfully with error: {fileSaverResult.Exception.Message}");
+                Dialogs.ShowAlert("Error", ex.Message);
+                throw;
             }
         }
     }

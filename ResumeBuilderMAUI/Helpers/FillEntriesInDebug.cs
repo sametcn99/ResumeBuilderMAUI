@@ -143,6 +143,7 @@ namespace ResumeBuilderMAUI.Helpers
                         Id = education.Id,
                         School = education.School,
                         Degree = education.Degree,
+                        Grade = education.Grade,
                         StartDate = education.StartDate,
                         EndDate = education.EndDate,
                         Description = education.Description

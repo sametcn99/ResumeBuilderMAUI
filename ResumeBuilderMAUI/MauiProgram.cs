@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Maui.Core;
 using Microsoft.Extensions.Logging;
-using QuestPDF.Infrastructure;
 using ResumeBuilderMAUI.ViewModels;
 using ResumeBuilderMAUI.Views;
 
@@ -24,8 +23,6 @@ namespace ResumeBuilderMAUI
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<CreateResumePage>();
 
-            // Register the QuestPDF Community License
-            QuestPDF.Settings.License = LicenseType.Community;
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

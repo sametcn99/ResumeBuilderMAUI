@@ -10,12 +10,12 @@ namespace ResumeBuilderMAUI.ViewModels
 {
     public partial class MainViewModel : CommunityToolkit.Mvvm.ComponentModel.ObservableObject
     {
-        //#if DEBUG
-        //        public MainViewModel()
-        //        {
-        //            FillEntriesInDebug.FillEntries(this);
-        //        }
-        //#endif
+#if DEBUG
+        public MainViewModel()
+        {
+            FillEntriesInDebug.FillEntries(this);
+        }
+#endif
 
         // Personal Information
         [ObservableProperty]
