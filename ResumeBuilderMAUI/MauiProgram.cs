@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Core;
+using Microsoft.Extensions.Logging;
 using QuestPDF.Infrastructure;
 using ResumeBuilderMAUI.Services;
 using ResumeBuilderMAUI.ViewModels;
