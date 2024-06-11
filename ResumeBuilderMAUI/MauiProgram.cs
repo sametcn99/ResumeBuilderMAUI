@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core;
-using Microsoft.Extensions.Logging;
 using QuestPDF.Infrastructure;
+using ResumeBuilderMAUI.Services;
 using ResumeBuilderMAUI.ViewModels;
 using ResumeBuilderMAUI.Views;
 
@@ -23,8 +23,11 @@ namespace ResumeBuilderMAUI
             builder.Services.AddSingleton<LoginViewModel>();
             builder.Services.AddSingleton<MainPage>();
             builder.Services.AddSingleton<CreateResumePage>();
+            builder.Services.AddSingleton<ResumeService>();
 
+#if !ANDROID && !IOS
             QuestPDF.Settings.License = LicenseType.Community;
+#endif
 
 #if DEBUG
             builder.Logging.AddDebug();
