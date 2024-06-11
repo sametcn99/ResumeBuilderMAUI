@@ -269,12 +269,12 @@ namespace ResumeBuilderMAUI.ViewModels
                     Dialogs.ShowAlert("Error", string.Join("Errors", $"{Formatters.FormatJson(Errors)}"));
                     return;
                 }
-                string ResumeId = $"{this.FirstName}_{this.LastName}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
+                string ResumeId = $"{this.FirstName?.ToLower()}_{this.LastName?.ToLower()}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}";
 
                 await LocalDbService.AddPerson(new Person
                 {
                     ResumeId = ResumeId,
-                    ResumeDate = DateTime.Now.ToString("MM/dd/yyyy"),
+                    ResumeDate = DateTime.Now,
                     FirstName = FirstName,
                     LastName = LastName,
                     Summary = Summary,

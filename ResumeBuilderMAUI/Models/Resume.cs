@@ -4,7 +4,7 @@
     public class Person
     {
         public string? ResumeId { get; set; }
-        public string? ResumeDate { get; set; }
+        public DateTime? ResumeDate { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public string? Summary { get; set; }

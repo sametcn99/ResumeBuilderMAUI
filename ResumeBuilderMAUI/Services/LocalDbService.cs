@@ -85,6 +85,26 @@ namespace ResumeBuilderMAUI.Services
         {
             await Inıt();
             var persons = await db.Table<Person>().ToListAsync();
+            persons.Sort((x, y) =>
+            {
+                if (x.ResumeDate.HasValue && y.ResumeDate.HasValue)
+                {
+                    return x.ResumeDate.Value.CompareTo(y.ResumeDate.Value);
+                }
+                else if (!x.ResumeDate.HasValue && y.ResumeDate.HasValue)
+                {
+                    return -1; // x is considered less than y
+                }
+                else if (x.ResumeDate.HasValue && !y.ResumeDate.HasValue)
+                {
+                    return 1; // x is considered greater than y
+                }
+                else
+                {
+                    return 0; // both x and y are null, so they're considered equal
+                }
+            });
+            persons.Reverse();
             return persons;
         }
 
